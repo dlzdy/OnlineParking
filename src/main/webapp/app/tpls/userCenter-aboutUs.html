@@ -1,0 +1,58 @@
+<div ng-controller="ctrlUserCenterAboutUs" ng-model="UserCenterAboutUs">
+<!--Begin 主体内容 -->
+
+<!--Logo-->
+<img class="logo-userCenter" src="css/images/logo-userCenter.png" alt="">
+<p class="text-center"><b class="text-3d" ng-bind="version"></b></p>
+
+<ul class="normalList te" style="margin-top: 3.8rem;">
+    <!--Begin 微信公众号-->
+    <li class="padding-L2R2">
+        微信公众号
+        <b class="pull-right text-black">OnlinePark</b>
+      <!--   <i class="icon icon-arrow icon-arrow-right"></i> -->
+    </li>
+    <!--End 微信公众号-->
+
+    <!--Begin 客服电话-->
+    
+    <li class="padding-L2R2" ng-click="tell('01084470260')">
+        客服电话
+        <b class="pull-right text-black">8610-84470260</b>
+        <!-- <i class="icon icon-arrow icon-arrow-right"></i> -->
+    </li>
+
+    <!--End 客服电话-->
+
+    <!--Begin 软件许可服务协议-->
+    <li id="softWareAgreeBtn" ng-click="toSoftwareAgree()">
+        软件许可服务协议
+        <i class="icon icon-arrow icon-arrow-right"></i>
+    </li>
+    <!--End 软件许可服务协议-->
+
+    <!--Begin 软件许可服务协议-->
+    <li id="softWareStateBtn" ng-click="toSoftwareState()" >
+        免责声明
+        <i class="icon icon-arrow icon-arrow-right"></i>
+    </li>
+    <!--End 软件许可服务协议-->
+    
+        
+    <!--Begin 系统升级-->
+    <li  id="updateSoftWare" ng-click="toUpdateSoftWare()">
+              版本更新  <b class="pull-right"><span class="badge red"  ng-show="{{isNewVersion}}">NEW</span><em  ng-show="{{isNewVersion}}" >有新版本可用</em></b>
+        <i class="icon icon-arrow icon-arrow-right"></i>
+     </li>
+    <!--End 系统升级-->
+    
+</ul>
+
+<p class="fs46 text-3d text-center mt70">
+    <strong>
+        北京银资科技有限公司<br/>
+        <small>www.yinzitech.com</small>
+    </strong>
+</p>
+<!--End 主体内容 -->
+</div>

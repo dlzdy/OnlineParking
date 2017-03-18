@@ -1,0 +1,23 @@
+<!--Begin 主体内容 -->
+<div class="container-fluid feedBack" ng-controller="ctrlUserCenterFeedBack">
+    <form action="" method="get" id="feedBackForm">
+		  <textarea name="opinionBody" id="opinionBody" ng-model="formData.opinionBody"  placeholder="我们需要您的珍贵意见"
+                    class="textarea form-control fs42" cols="30" rows="10" ng-blur="blur()" selectline="" ng-keyup="checkText()">
+		    </textarea>
+		     <span ng-bind="wordNum.num"></span>
+        <button class="btn btn-success pull-right mt60" ng-click="submitFeedBack()" ng-disabled="formData.opinionBody.length<=0 || formData.opinionBody=='我们需要您的珍贵意见' ">发送</button>
+    </form>
+</div>
+<!--End 主体内容 -->
+<script language="javascript" type="text/javascript">
+    function androidEdit() {    //接收来自android的数据
+    	//var tem= resetJson('isEdit','true')
+        $('#opinionBody').val() ? client.goBack(resetJson('isEdit','true')) : client.goBack(resetJson('isEdit','false'));
+    }
+    function resetJson(key,val){
+    	var tem = {};
+        tem[key]=val;
+        //alert(JSON.stringify(tem));
+        return JSON.stringify(tem);
+    }
+</script>

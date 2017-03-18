@@ -1,0 +1,56 @@
+<!--Begin 主体内容 -->
+<div class="container-fluid editNickName"
+	ng-controller="userCenterInfoCtrl">
+	<form action="" name="formEditNickName" method="get" id="editNickName">
+		<input name="nickName" id="nickName" type="text" class="form-control"
+			ng-required="true" ng-model="userInfo.clientUserNickName"
+			placeholder="请填写姓名">
+		<!-- onkeyup="limitLength(value,20,'语义说明','nickName')" -->
+		<!--ng-maxlength="10"  -->
+
+		<!--   <div class="alert alert-danger help-block" ng-show="formEditNickName.nickName.$error.maxlength">
+            姓名长度不能大于20个汉字
+        </div> -->
+		<button type="submit" class="btn btn-success btn-block mt60"
+			ng-disabled="formEditNickName.$invalid && formEditNickName.nickName.$dirty"
+			ng-click="saveNickName()">保存</button>
+	</form>
+</div>
+<!--End 主体内容 -->
+<script>
+	document.getElementById('nickName').addEventListener('input', function(e) {
+		var value = e.target.value;
+		var newvalue = value.replace(/[^\x00-\xff]/g, "**");
+		var length = newvalue.length;
+		var byteLength = 20;
+		//当填写的字节数小于设置的字节数 
+		if (length * 1 <= byteLength * 1) {
+			return;
+		}
+		var limitDate = newvalue.substr(0, byteLength);
+		var count = 0;
+		var limitvalue = "";
+		for (var i = 0; i < limitDate.length; i++) {
+			var flat = limitDate.substr(i, 1);
+			if (flat == "*") {
+				count++;
+			}
+		}
+		var size = 0;
+		var istar = newvalue.substr(byteLength * 1 - 1, 1);//校验点是否为“×” 
+
+		//if 基点是×; 判断在基点内有×为偶数还是奇数  
+		if (count % 2 == 0) {
+			//当为偶数时 
+			size = count / 2 + (byteLength * 1 - count);
+			limitvalue = value.substr(0, size);
+		} else {
+			//当为奇数时 
+			size = (count - 1) / 2 + (byteLength * 1 - count);
+			limitvalue = value.substr(0, size);
+		}
+		// alert(title + "最大输入" + byteLength + "个字节（相当于"+byteLength /2+"个汉字）！"); 
+		document.getElementById("nickName").value = limitvalue;
+		return;
+	});
+</script>

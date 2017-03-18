@@ -1,0 +1,19 @@
+/*reset*/
+*{margin:0;padding:0}
+html{font-size: 10px;}
+/*logo*/
+
+.logo-wrap{position:absolute; top:0;background:url("../images/logo-bg.jpg")no-repeat #FFF top center / 100% auto; width:100%; height:100%;}
+.logo{width:70%; display:block;margin:9% auto;}
+a{box-sizing:border-box; width:66.54%; height: 4rem ; text-decoration: none; border-radius:.7rem; padding-top: .4rem; text-align: center; display: block; margin: auto; font-family: "Microsoft YaHei"; font-size: 1.6rem; vertical-align: middle;}
+.btn-wrap{position:absolute;bottom:0;width:100%;padding:2rem 0;background:#FFF;}
+/*图标*/
+.icon{display: inline-block;margin-right:1.2rem;vertical-align: middle; width: 2.533rem;height: 2.967rem; }
+.icon-apple{background: url(images/icon-apple.png) no-repeat center center/contain; width: 2.5rem;height: 2.5rem; }
+.icon-android{background: url(images/icon-android.png) no-repeat center center/contain;  margin-left: -1.7rem;margin-right: 1.9rem; position: relative;}
+
+/* apple and android */
+.apple{border:.133rem solid #14A4FA;color:#14A4FA;margin-bottom: 1.3rem}
+.android{border:.133rem solid #14E874;color: #13E874}
+
+span{position:relative;top:.25rem}

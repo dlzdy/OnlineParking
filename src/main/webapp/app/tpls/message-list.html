@@ -1,0 +1,34 @@
+<div class="message-list" ng-controller="messageListCtrl">
+
+    <div ng-hide='dataMessageList.length<=0 || dataMessageList' class='text-center' style="margin-left: -2rem;">页面加载中……</div>
+
+    <div class="list-null text-center hide" ng-class="{show:dataMessageList.length<=0 && dataMessageList}" style="margin-left: -2rem;">
+        <i class="icon icon-list-null"></i>
+
+        <div class="text-3d">没找到相关订单</div>
+    </div>
+
+    <ul class="container-fluid">
+        <!--消息列表 begin-->
+        <li class="bills-date-box list-unstyled bg-color-FFF clearfix" ng-repeat="item in dataMessageList">
+            <!--左侧图标 begin-->
+            <div class="message-icon">
+                <img src="images/message-{{ item.msgIsOpen?'read':'unread' }}.png" class="img-responsive" alt=" {{ item.msgIsOpen?'已读消息':'未读消息'}} ">
+            </div>
+            <!--左侧图标 end-->
+            <!--右侧消息 begin-->
+            <div class="message-box">
+                <h3 class="message-title" ng-bind="item.msgName"></h3>
+                <p class="message-content" ng-bind="item.msgBody"></p>
+                <p class="message-date" ng-bind="item.msgSendTime"></p>
+            </div>
+            <!--右侧消息 end-->
+        </li>
+        <!--消息列表 end-->
+    </ul>
+</div>
+<script>
+function getMsgData(ds){
+	alert(ds);
+}
+</script>

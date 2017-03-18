@@ -1,0 +1,21 @@
+<style>
+    .box{ background:#CCC; }
+    .box label{ left:2rem; }
+    .box.curr{ background:#0095FF; }
+    .box.curr label{ left:0; }
+</style>
+
+<div class="autopay" ng-controller="setAutoPayCtrl">
+    <div class="content bgWhite clearfix" ng-click="togglePaid()">
+        <span class="text l">是否允许系统自动支付</span>
+
+        <div class="box r" ng-class="{curr:isAutoPaid}" >
+            <input type="checkbox" ng-model="isAutoPaid">
+            <label></label>
+        </div>
+    </div>
+    <p class="instruction">
+        此选项选择后，凡与online停车合作的停车场均支持客户自 动从账户余额扣除停车费用
+    </p>
+</div>
+

@@ -1,0 +1,20 @@
+.container-fluid{ padding:42px; }
+.panel{ box-shadow:5px 5px 8px rgba(0, 0, 0, .1); border-color:#F7F7F7;margin-bottom:42px; }
+.panel-heading{ padding:0; height:75px; line-height:75px; border-radius:5px 5px 0 0; background:#D2D2D2; margin:-1px; }
+.panel-heading h3{ padding-left:80px; position:relative; display:inline-block; color:#FFF; font-size:21px; }
+.panel-heading h3 i{ position:absolute; top:-10px; left:17px; display:block; width:48px; height:48px; }
+.panel-body{font-size:16px; font-weight:normal; padding:12px;}
+.icon-mouth{ background:url("images/icon-mouth.png") no-repeat; }
+.icon-person{ background:url("images/icon-person.png") no-repeat; }
+.icon-use{ background:url("images/icon-user.png") no-repeat; }
+.icon-order{ background:url("images/icon-order.png") no-repeat; }
+.panel .item{ height:76px;border:1px solid #E5E5E5;border-radius:3px; padding:0 24px; margin-bottom:12px;}
+.panel .item label,.panel .item span{ line-height:80px; display:inline-block; font-weight:normal;cursor:default;}
+.panel .item .strong{ font-size:38px; margin:0 20px;}
+
+.date-time{ color:#D2D2D2;}
+.date-time i{ background:url("images/date_icon.png") no-repeat; display:inline-block; width:14px; height:16px; position:relative;top:2px;}
+
+
+
+

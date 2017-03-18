@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yinzitech.onlineparking.dao.order.QueryChargingOrderDao">
+	<resultMap type="com.yinzitech.onlineparking.entity.order.ChargingOrder"
+		id="ChargingOrderMap">
+		<id column="charging_order_id" property="chargingOrderId" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="charging_order_2_fund_account_id" property="chargingOrder2FundAccountId"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="charging_order_2_client_user_id" property="chargingOrder2ClientUserId"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="charging_order_charging_type" property="chargingOrderChargingType"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="charging_order_charging_account" property="chargingOrderChargingAccount"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="charging_order_payment_platform_id" property="chargingOrderPaymentPlatformId"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="charging_order_payment_platform_feedback"
+			property="chargingOrderPaymentPlatformFeedback" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="charging_order_amount" property="chargingOrderAmount"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="charging_order_create_time" property="chargingOrderCreateTime"
+			javaType="String" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="queryChargingOrder" resultMap="ChargingOrderMap">
+		SELECT * FROM charging_order WHERE 1=1
+		<if
+			test="chargingOrder2ClientUserId != null and chargingOrder2ClientUserId != '' ">
+			AND charging_order_2_client_user_id =
+			#{chargingOrder2ClientUserId}
+		</if>
+		<if
+			test="chargingOrderChargingType != null and chargingOrderChargingType != '' ">
+			AND charging_order_charging_type =
+			#{chargingOrderChargingType}
+		</if>
+		<if
+			test="chargingOrderPaymentPlatformFeedback != null and chargingOrderPaymentPlatformFeedback != '' ">
+			AND charging_order_payment_platform_feedback =
+			#{chargingOrderPaymentPlatformFeedback}
+		</if>
+		<if
+			test="startTime != null and startTime != '' and endTime != null and endTime != '' ">
+			AND charging_order_create_time BETWEEN #{startTime} AND
+			#{endTime}
+		</if>
+		ORDER BY charging_order_create_time DESC
+	</select>
+</mapper>
+
+
+

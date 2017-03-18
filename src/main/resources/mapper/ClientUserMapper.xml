@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yinzitech.onlineparking.dao.client.QueryClientUserDao">
+	<cache eviction="LRU" flushInterval="60000" size="1024" readOnly="true" />
+	<resultMap type="com.yinzitech.onlineparking.entity.client.user.ClientUser"
+		id="ClientUserMap">
+		<id column="client_user_id" property="clientUserId" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="client_user_security" property="clientUserSecurity"
+			javaType="String" jdbcType="VARCHAR" />
+
+		<result column="client_user_cellphone" property="clientUserCellphone"
+			javaType="String" jdbcType="VARCHAR" />
+
+		<result column="client_user_sex" property="clientUserSex"
+			javaType="String" jdbcType="VARCHAR" />
+
+		<result column="client_user_nick_name" property="clientUserNickName"
+			javaType="String" jdbcType="VARCHAR" />
+
+		<result column="client_user_birthday" property="clientUserBirthday"
+			javaType="String" jdbcType="VARCHAR" />
+
+		<result column="client_user_sign_up_time" property="clientUserSignUpTime"
+			javaType="String" jdbcType="VARCHAR" />
+
+		<result column="client_user_active_mark" property="clientUserActiveMark"
+			javaType="String" jdbcType="VARCHAR" />
+
+		<result column="client_user_auto_pay" property="clientUserAutoPay"
+			javaType="String" jdbcType="VARCHAR" />
+
+		<result column="client_user_registr_ation_id" property="clientUserRegistrAtionId"
+			javaType="String" jdbcType="VARCHAR" />
+
+		<result column="client_user_type" property="clientUserType"
+			javaType="String" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="getUser" resultMap="ClientUserMap">
+		SELECT * FROM client_user WHERE 1=1
+		<if test="clientUserId != null and clientUserId != '' ">
+			AND client_user_id =#{clientUserId}
+		</if>
+		<if test="clientUserCellphone != null and clientUserCellphone != '' ">
+			AND client_user_cellphone like #{clientUserCellphone}
+		</if>
+		<if test="clientUserSecurity != null and clientUserSecurity != '' ">
+			AND client_user_security =#{clientUserSecurity}
+		</if>
+
+		<if test="clientUserSex != null and clientUserSex != '' ">
+			AND client_user_sex =#{clientUserSex}
+		</if>
+
+		<if
+			test="startBirthday != null and startBirthday != '' and endBirthday != null and endBirthday != '' ">
+			AND client_user_birthday BETWEEN #{startBirthday} AND
+			#{endBirthday}
+		</if>
+
+		<if
+			test="startUpTime != null and startUpTime != '' and endUpTime != null and endUpTime != '' ">
+			AND client_user_sign_up_time BETWEEN #{startUpTime} AND
+			#{endUpTime}
+		</if>
+
+		<if test="clientUserActiveMark != null and clientUserActiveMark != '' ">
+			AND client_user_active_mark =#{clientUserActiveMark}
+		</if>
+
+		<if test="clientUserAutoPay != null and clientUserAutoPay != '' ">
+			AND client_user_auto_pay =#{clientUserAutoPay}
+		</if>
+		<if test="registrAtionId != null and registrAtionId != '' ">
+			AND client_user_registr_ation_id =#{registrAtionId}
+		</if>
+		<if test="clientUserType != null and clientUserType != '' ">
+			AND client_user_type =#{clientUserType}
+		</if>
+
+	</select>
+
+
+
+	<update id="updateUser"
+		parameterType="com.yinzitech.onlineparking.entity.client.user.ClientUser">
+		UPDATE client_user
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="clientUserNickName != null and clientUserNickName != '' ">
+				client_user_nick_name = #{clientUserNickName},
+			</if>
+			<if test="clientUserBirthday != null and clientUserBirthday != '' ">
+				client_user_birthday = #{clientUserBirthday},
+			</if>
+			<if test="clientUserSex != null and clientUserSex != '' ">
+				client_user_sex = #{clientUserSex},
+			</if>
+		</trim>
+		WHERE client_user_cellphone= #{clientUserCellphone} and
+		client_user_security = #{clientUserSecurity}
+	</update>
+
+</mapper>
+
+
+

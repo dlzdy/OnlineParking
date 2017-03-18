@@ -1,0 +1,148 @@
+<div ng-controller="ctrlBills" ng-model="BillsList">
+    <div class="bills">
+        <!--Begin 主体内容 -->
+
+        <!--Begin 导航-->
+        <ul class="nav-mini list-unstyled nav-mini-fixed">
+            <li class="nav-mini-li active">
+                <a href="javascript:;">当前账单</a>
+            </li>
+            <li id="bills-histroy" class="nav-mini-li"><a href="javascript:;">历史账单</a></li>
+            <li class="active-under-line"></li>
+        </ul>
+        <!--End 导航-->
+
+        <div class="container-fluid container-padding-top" ng-controller='ctrlBillsNopaid'>
+            <!--Begin 当前账单-->
+            <div class="nav-mini-content " style="margin-right:-2rem;margin-left:.5rem;">
+
+                <div ng-hide='ds.length<=0 || ds' class='text-center' style="margin-left: -2rem;">页面加载中……</div>
+
+              <!--   <div class="list-null text-center hide" ng-class="{show:ds.length<=0 && ds}" style="margin-left: -2rem;">
+                    <i class="icon icon-list-null"></i>
+
+                    <div class="text-3d">没找到相关订单</div>
+                </div> -->
+                     
+                <div class="text-center central hide" ng-class="{show:ds.length<=0 && ds}">
+                	<i class="icon icon-no-bill  box-3d"></i>
+                	 <div class="text-3d">没找到相关订单</div>
+                </div>
+             
+                <ul class="list-unstyled">
+                    <!--Begin 单个Item-->
+                    <li class="bills-history-item" ng-repeat="order in ds" ng-click="goBillsDetail({
+                 parkingOrderParkingInfoId:order.parkingOrderParkingInfoId,
+                 parkingOrderCarNo:order.parkingOrderCarNo,
+                 parkingImg:'',
+                 parkingOrderId:order.parkingOrderId,
+                 parkingOrderCarEnterTime:order.parkingOrderCarEnterTime,
+                 parkingOrderCarExitTime:order.parkingOrderCarExitTime,
+                 parkingOrderCarStayTime:order.parkingOrderCarStayTime,
+                 parkingOrderCost:order.parkingOrderCost,
+                 isCurrentOrder:true,
+                 parkingOrderPayState:order.parkingOrderPayState
+                 })">
+
+                        <a ui-sref="billsDetail({billId:order.parkingOrderId})">
+                            <a href="javascript:;">
+                                <label class="label-group  text-default">
+                                    <i class="icon icon-circle pull-left mr1"></i>
+                                    
+                                    <span ng-bind="order.createDate"></span>
+                                </label>
+
+                                <div class="bg-color-FFF bills-history-box  mt1">
+                                    <!--详情箭头-->
+                                    <i class="icon icon-arrow icon-arrow-right"></i>
+                                    <!--车牌号-->
+                                    <i class="icon plate plate-blue text-white m0"
+                                       ng-bind="order.parkingOrderCarNo"></i>
+                                    <!--停车场名称-->
+                                    <p class="fs46 text-black mt1" ng-bind="order.parkingName"></p>
+                                    <!--进场和出场时间-->
+                                    <p class="text-default">
+                                        <span ng-bind="order.parkingOrderCarEnterTime"></span>~
+                                        <span ng-bind="order.parkingOrderCarExitTime"></span></p>
+                                </div>
+
+                                <div class="bills-history-footer"></div>
+                            </a>
+                        </a>
+                    </li>
+
+                    <!-- End 单个Item-->
+                </ul>
+            </div>
+            <!--End 当前账单-->
+
+            <!--Begin 历史账单-->
+            <div class="nav-mini-content"
+                style="margin-right:-2rem;margin-left:.5rem;display: none;" ng-controller='ctrlBillsHistory'>
+
+
+                <div ng-hide='reddit.items.length<=0 || reddit.items' class='text-center' style="margin-left: -2rem;">页面加载中……</div>
+               <!--  <div class="list-null text-center" ng-show="reddit.items.length<=0" style="margin-left: -2rem;">
+                    <i class="icon icon-list-null"></i>
+
+                    <div class="text-3d">没找到相关订单</div>
+                </div> -->
+                
+                <div class="text-center central" ng-show="reddit.items.length<=0">
+                	<i class="icon icon-no-bill  box-3d"></i>
+                	 <div class="text-3d">没找到相关订单</div>
+                </div>
+
+                <ul class="list-unstyled" infinite-scroll='reddit.nextPage()' infinite-scroll-disabled='reddit.busy' infinite-scroll-distance='1'>
+                    <div ng-show='reddit.busy' style="background:#DDD; position: fixed;bottom:0;width:100%; height:2rem;">{{reddit.tipTxt}}</div>
+                    <!--Begin 单个Item-->
+                    <li class="bills-history-item" ng-repeat="order in reddit.items" ng-click="goBillsDetail({
+                 parkingOrderParkingInfoId:order.parkingOrderParkingInfoId,
+                 parkingOrderCarNo:order.parkingOrderCarNo,
+                 parkingImg:'',
+                 parkingOrderId:order.parkingOrderId,
+                 parkingOrderCarEnterTime:order.parkingOrderCarEnterTime,
+                 parkingOrderCarExitTime:order.parkingOrderCarExitTime,
+                 parkingOrderCarStayTime:order.parkingOrderCarStayTime,
+                 parkingOrderCost:order.parkingOrderCost,
+                 isCurrentOrder:false,
+                 parkingOrderPayState:order.parkingOrderPayState
+                 })">
+
+                        <a ui-sref="billsDetail({billId:order.parkingOrderId})">
+                            <a href="javascript:;">
+                                <label class="label-group  text-default">
+                                    <i class="icon icon-circle pull-left mr1"></i>
+                                    
+                                    <span ng-bind="order.createDate"></span>
+                                </label>
+
+                                <div class="bg-color-FFF bills-history-box  mt1">
+                                    <!--详情箭头-->
+                                    <i class="icon icon-arrow icon-arrow-right"></i>
+                                    <!--车牌号-->
+                                    <i class="icon plate plate-blue text-white m0"
+                                       ng-bind="order.parkingOrderCarNo"></i>
+                                    <!--停车场名称-->
+                                    <p class="fs46 text-black mt1" ng-bind="order.parkingName"></p>
+                                    <!--进场和出场时间-->
+                                    <p class="text-default">
+                                        <span ng-bind="order.parkingOrderCarEnterTime"></span>~
+                                        <span ng-bind="order.parkingOrderCarExitTime"></span></p>
+                                </div>
+
+                                <div class="bills-history-footer"></div>
+                            </a>
+                        </a>
+                    </li>
+
+                    <!-- End 单个Item-->
+
+                </ul>
+
+            </div>
+            <!--End 历史账单-->
+        </div>
+    </div>
+</div>
+<script src="js/pages/bills.js"></script>

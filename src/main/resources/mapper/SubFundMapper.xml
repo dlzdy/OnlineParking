@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.yinzitech.onlineparking.dao.fundAccountManage.QuerySubFundDao">
+	<resultMap
+		type="com.yinzitech.onlineparking.entity.fundAccountManage.SubFundAccountSeq"
+		id="SubFundMap">
+		<id column="sub_fund_account_seq_id" property="subFundAccountSeqId"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="sub_fund_account_seq_fund_account_id" property="subFundAccountSeqFundAccountId"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="sub_fund_account_seq_client_user_id" property="subFundAccountSeqClientUserId"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="sub_fund_account_seq_client_user_cellphone"
+			property="subFundAccountSeqClientUserCellphone" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="sub_fund_account_seq_flag" property="subFundAccountSeqFlag"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="sub_fund_account_seq_change_type" property="subFundAccountSeqChangeType"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="sub_fund_account_seq_pre_amount" property="subFundAccountSeqPreAmount"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="sub_fund_account_seq_amount" property="subFundAccountSeqAmount"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="sub_fund_account_seq_refsn_order_type"
+			property="subFundAccountSeqRefsnOrderType" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="sub_fund_account_seq_refsn_order_id" property="subFundAccountSeqRefsnOrderId"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="sub_fund_account_seq_pre_refsn_order_type"
+			property="subFundAccountSeqPreRefsnOrderType" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="sub_fund_account_seq_pre_refsn_order_id"
+			property="subFundAccountSqePreRefsnOrderId" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="sub_fund_account_seq_create_time" property="subFundAccountSeqCreateTime"
+			javaType="String" jdbcType="VARCHAR" />
+
+	</resultMap>
+
+	<select id="getSubFund" resultMap="SubFundMap">
+		SELECT * FROM
+		sub_fund_account_seq WHERE 1=1
+		<if
+			test="subFundAccountSeqClientUserId != null and subFundAccountSeqClientUserId != '' ">
+			AND sub_fund_account_seq_client_user_id =
+			#{subFundAccountSeqClientUserId}
+		</if>
+
+		<if
+			test="subFundAccountSeqClientUserCellphone != null and subFundAccountSeqClientUserCellphone != '' ">
+			AND sub_fund_account_seq_client_user_cellphone =
+			#{subFundAccountSeqClientUserCellphone}
+		</if>
+
+		<if test="subFundAccountSeqFlag != null and subFundAccountSeqFlag != '' ">
+			AND sub_fund_account_seq_flag = #{subFundAccountSeqFlag}
+		</if>
+
+		<if
+			test="subFundAccountSeqChangeType != null and subFundAccountSeqChangeType != '' ">
+			AND sub_fund_account_seq_change_type =
+			#{subFundAccountSeqChangeType}
+		</if>
+
+		<if
+			test="subFundAccountSeqRefsnOrderType != null and subFundAccountSeqRefsnOrderType != '' ">
+			AND sub_fund_account_seq_refsn_order_type =
+			#{subFundAccountSeqRefsnOrderType}
+		</if>
+
+		<if
+			test="subFundAccountSeqPreRefsnOrderType != null and subFundAccountSeqPreRefsnOrderType != '' ">
+			AND sub_fund_account_seq_pre_refsn_order_type =
+			#{subFundAccountSeqPreRefsnOrderType}
+		</if>
+
+		<if
+			test="subFundAccountSeqRefsnOrderId != null and subFundAccountSeqRefsnOrderId != '' ">
+			AND sub_fund_account_seq_refsn_order_id =
+			#{subFundAccountSeqRefsnOrderId}
+		</if>
+
+		<if
+			test="subFundAccountSqePreRefsnOrderId != null and subFundAccountSqePreRefsnOrderId != '' ">
+			AND sub_fund_account_seq_pre_refsn_order_id =
+			#{subFundAccountSqePreRefsnOrderId}
+		</if>
+
+		<if
+			test="startTime != null and startTime != ''  and endTime != null and endTime != '' ">
+			AND sub_fund_account_seq_create_time BETWEEN #{startTime} AND
+			#{endTime}
+		</if>
+		ORDER BY sub_fund_account_seq_create_time DESC
+	</select>
+</mapper>
+
+
+

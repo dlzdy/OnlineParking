@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yinzitech.onlineparking.dao.appVersion.AppVersionDao">
+	<resultMap type="com.yinzitech.onlineparking.entity.appVersion.AppVersion"
+		id="AppVersionMap">
+		<id column="id" property="id" javaType="String" jdbcType="VARCHAR" />
+
+		<result column="appName" property="appName" javaType="String"
+			jdbcType="VARCHAR" />
+
+		<result column="versionCode" property="versionCode" javaType="String"
+			jdbcType="VARCHAR" />
+
+		<result column="versionName" property="versionName" javaType="String"
+			jdbcType="VARCHAR" />
+
+		<result column="apkUrl" property="apkUrl" javaType="String"
+			jdbcType="VARCHAR" />
+
+		<result column="changeLog" property="changeLog" javaType="String"
+			jdbcType="VARCHAR" />
+
+		<result column="updateTips" property="updateTips" javaType="String"
+			jdbcType="VARCHAR" />
+
+		<result column="createTime" property="createTime" javaType="String"
+			jdbcType="VARCHAR" />
+
+		<result column="createUserId" property="createUserId" javaType="String"
+			jdbcType="VARCHAR" />
+
+		<result column="appType" property="appType" javaType="String"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+	<insert id="addAppVersion"
+		parameterType="com.yinzitech.onlineparking.entity.appVersion.AppVersion">
+		insert into AppVersion(id,
+		appName,versionCode,versionName,apkUrl,changeLog,updateTips,createTime,createUserId,appType)
+		values(#{id},#{appName},#{versionCode},#{versionName},#{apkUrl},#{changeLog},#{updateTips},#{createTime},#{createUserId},#{appType})
+	</insert>
+
+
+
+	<select id="getAppVersion" resultMap="AppVersionMap">
+		SELECT * FROM AppVersion
+		WHERE 1=1
+		<if test=" id != null and id != '' ">
+			and id = #{id}
+		</if>
+		<if test=" appType != null and appType != '' ">
+			and appType = #{appType}
+		</if>
+		ORDER BY createTime DESC
+	</select>
+
+
+	<update id="upAppVersion"
+		parameterType="com.yinzitech.onlineparking.entity.appVersion.AppVersion">
+		UPDATE AppVersion
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="appName != null and appName != '' ">
+				appName = #{appName},
+			</if>
+			<if test="versionCode != null and versionCode != '' ">
+				versionCode = #{versionCode},
+			</if>
+			<if test="versionName != null and versionName != '' ">
+				versionName = #{versionName},
+			</if>
+			<if test="apkUrl != null and apkUrl != '' ">
+				apkUrl = #{apkUrl},
+			</if>
+			<if test="changeLog != null and changeLog != '' ">
+				changeLog = #{changeLog},
+			</if>
+
+			<if test="updateTips != null and updateTips != '' ">
+				updateTips = #{updateTips},
+			</if>
+
+			<if test="createTime != null and createTime != '' ">
+				createTime = #{createTime},
+			</if>
+
+			<if test="createUserId != null and createUserId != '' ">
+				createUserId = #{createUserId},
+			</if>
+			<if test="appType != null and appType != '' ">
+				appType = #{appType},
+			</if>
+		</trim>
+		WHERE id = #{id}
+	</update>
+
+</mapper>
+
+
+

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yinzitech.onlineparking.dao.parkingInfo.ParkPointDao">
+	<resultMap type="com.yinzitech.onlineparking.entity.parkingInfo.ParkPoint" id="ParkMap">
+		<id column="parkId" property="parkId" javaType="String" jdbcType="INTEGER" />
+	 
+		<result column="parkName" property="parkName" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="Lat" property="Lat" javaType="String" jdbcType="VARCHAR" />
+		<result column="Lng" property="Lng" javaType="String" jdbcType="VARCHAR" />
+		<result column="Lat1" property="Lat1" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="Lng1" property="Lng1" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="Lat2" property="Lat2" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="Lng2" property="Lng2" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="Lat3" property="Lat3" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="Lng3" property="Lng3" javaType="String"
+			jdbcType="VARCHAR" />
+	 
+	</resultMap>
+	<select id="getParkAll" useCache="true" resultMap="ParkMap">
+		select * from
+		parkPoint
+	</select>
+
+	<select id="getPark" useCache="true" resultMap="ParkMap">
+		select * from parkPoint where 1=1
+		<if test="parkName != null and parkName != ''">
+			and parkName like CONCAT(CONCAT('%',#{parkName}),'%')
+		</if>
+	</select>
+	<select id="getParkById" useCache="true" resultMap="ParkMap">
+		select * from
+		parkPoint where parkId=#{parkId}
+	</select>
+
+	<insert id="addPark" parameterType="com.yinzitech.onlineparking.entity.parkingInfo.ParkPoint">
+		insert into parkPoint
+		(parkId,  parkName, Lat, Lng, Lat1, Lng1,
+		Lat2,Lng2,Lat3, Lng3 )
+		values(#{parkId} ,#{parkName},#{Lat},#{Lng},#{Lat1},#{Lng1},#{Lat2},#{Lng2},
+		#{Lat3},#{Lng3} )
+	</insert>
+
+	<update id="updatePark" parameterType="com.yinzitech.onlineparking.entity.parkingInfo.ParkPoint">
+		update parkPoint
+
+		<trim suffixOverrides="," prefix="set">
+ 
+			<if test="parkName != null and parkName != ''"> parkName = #{parkName}</if>
+
+			<if test="Lat != null and Lat != ''"> Lat = #{Lat}</if>
+			<if test="Lng != null and Lng != ''"> Lng = #{Lng}</if>
+			<if test="Lat1 != null and Lat1 != ''"> Lat1 = #{Lat1}</if>
+			<if test="Lng1 != null and Lng1 != ''"> Lng1 = #{Lng1}</if>
+			<if test="Lng2 != null and Lng2 != ''"> Lng2 = #{Lng2}</if>
+			<if test="Lng2 != null and Lng2 != ''"> Lng2 = #{Lng2}</if>
+			<if test="Lng3 != null and Lng3 != ''"> Lng3 = #{Lng3} </if>
+			<if test="Lng3 != null and Lng3 != ''"> Lng3 = #{Lng3}</if> 
+
+			where parkId = #{parkId}
+		</trim>
+
+	</update>
+</mapper>

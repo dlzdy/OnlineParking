@@ -1,0 +1,17 @@
+  <div class="bg-color-FFF" ng-controller="ctrlMessageDetail" ng-model="MessageDetail" >
+  
+    <!--Begin 消息标题 -->
+    <div class="container-fluid">
+       <h2 class="message-title color-black" ng-bind="msgName"></h2>
+       <h3 class="message-subtitle"><span class="marginL5" ng-bind="msgSendName"></span><span ng-bind="msgSendTime"> </span></h3>
+    </div>
+    <!--End 消息标题 -->
+    <img ng-src="{{msgBodyImgUrl}}" class="img img-responsive center-block message-img" alt="" ng-show="show">
+
+    <!--Begin 消息内容 -->
+    <div class="container-fluid" style='min-height:50rem;'>    
+        <p class="message-content color-black" ng-bind="msgBody">   </p>  
+    </div>
+    <!--End 消息内容 -->
+    
+   </div>

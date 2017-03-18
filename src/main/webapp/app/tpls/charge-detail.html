@@ -1,0 +1,28 @@
+<div class="charge-detail" ng-controller="chargeDetailCtr">
+
+    <!--Begin 主体内容 -->
+    <div class="container-fluid">
+
+        <!--Begin 收费列表-->
+        <ul class="bills-date-box list-unstyled bg-color-FFF clearfix" ng-repeat="item in chargeData">
+            <li class="col-xs-3">
+                <p class="text-default text-left" ng-bind="item.chargingStandardsStep"></p>
+            </li>
+            <li class="col-xs-6">
+                <p class="text-default text-center" ng-bind="item.chargingStandardsStepStart
+                                                             +'--'
+                                                             +item.chargingStandardsStepEnd
+                                                             +'分钟'"></p>
+            </li>
+            <li class="col-xs-3">
+                <p class="text-default text-right" ng-bind="item.chargingStandardsPrise+'元'">1元</p>
+            </li>
+        </ul>
+        <!--End  收费列表-->
+
+
+    </div>
+    <!--End 主体内容 -->
+
+
+</div>

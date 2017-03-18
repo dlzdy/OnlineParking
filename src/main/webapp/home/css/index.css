@@ -1,0 +1,27 @@
+body,h1,h2,h3,h4,h5,h6,dl,dt,dd,ul,ol,li,th,td,p,blockquote,pre,form,fieldset,legend,input,button,textarea,hr{margin:0;padding:0}body{font:12px/1.5 SimSun,Arial,Helvetica,san-serif;color:#444}select,input,button{vertical-align:middle;font-size:100%}ul,ol{list-style:none}fieldset,img{border:0}em{font-style:normal}.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}.clearfix{display:inline-block}/*\*/* html .clearfix{height:1%}.clearfix{display:block}.clear{clear:both;height:0;font:0/0 Arial;visibility:hidden}
+.l{float: left;}.r{float: right;}
+.w1100{width: 1100px;margin:0 auto;}
+body{background: #f9f9f9;overflow: hidden;}
+.header{height:78px;line-height: 78px;border-bottom: 2px solid #3349ef;min-width: 1100px;}
+.logo{display: block;}
+.logo img{display: block;margin-top: 15px;}
+.nav{}
+.nav li{float: left;margin-left: 15px;}
+.nav a{text-decoration: none;color: #000;font-family:"\5FAE\8F6F\96C5\9ED1";font-size:14px;font-weight: bold;display: inline-block;height: 33px;line-height: 33px;padding:0 10px;border:1px solid #f9f9f9;border-radius:20px;}
+.nav a:hover,.nav a.cur{border:1px solid #434343;border-radius:20px;}
+.footer{height: 140px;background: #313131;position:fixed;bottom:0;left:0;width: 100%;}
+.footeroDiv{background: #313131;min-width: 1100px;}
+.footer-w{position: relative;}
+.footLeft *{color: #6e6e6e;}
+.footLeft span{display: inline-block;line-height: 20px;margin:20px 40px 0 0;}
+.footLeft span.span-f03{margin-right: 0;}
+.footLeft p{margin-top: 15px;}
+.car{margin-top: 12%;}
+.txt{margin-top:8%;}
+.erweima{position:absolute;right:0;bottom:0;background: url(../images/erweima_10.png) no-repeat;width: 375px;height: 244px;}
+.relative{position: relative;height: 100%;}
+.android{position: absolute;right:0;bottom:28px;}
+.ios{position: absolute;right:139px;bottom:28px;}
+.cneter{width:100%;margin:0 auto;background: url(../images/main3.png) no-repeat center center;}
+.cneter img{width: 100%;height: auto;}
+.relative img{width:117px;height:117px;display:block;}

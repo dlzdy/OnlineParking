@@ -1,0 +1,141 @@
+<div class="bills-detail" ng-controller="ctrlBillsDetail" ng-model="BillsDetail">
+    <!--Begin 主体内容 -->
+    <div class="container-fluid">
+        <!--Begin 车牌-->
+        <div class="panel-blue">
+            <!--车牌-->
+            <i id="carNo" class="icon plate text-blue">
+                {{parkingOrderCarNo}}
+            </i>
+        </div>
+        <!--End 车牌-->
+
+
+        <!--Begin 车场图片-->
+        <img class="img img-responsive"
+             width="100%" height="100%" ng-src="images/img-park.jpg" ><!--  alt="imgName" -->
+        <!--End 车场图片-->
+
+        <!--Begin 停车场名称-->
+        <div class="panel-blue text-white">
+            <p class="fs42">
+                停车场地
+                <!--收费明细-->
+                <label id='sfmx' class="label-group text-white pull-right" ng-hide=" parkingOrderParkingInfoId=='' " ng-click="sfmx()">
+                    <i class="icon icon-money pull-left"></i>
+                    收费明细
+                </label>
+            </p>
+            <h4>{{parkingName}}</h4>
+        </div>
+        <!--End 停车场名称-->
+
+        <!--Begin 进场时间和出场时间-->
+        <ul class="bills-date-box list-unstyled bg-color-FFF clearfix">
+            <li class="col-xs-6">
+                <p class="text-default text-center fs42" id="inDate">进场时间：<span>{{getYMD(parkingOrderCarEnterTime)}}</span></p>
+                <p class="text-blue text-center fs90" id="inDatetime">{{getHM(parkingOrderCarEnterTime)}}</p>
+                <i class="line"></i>
+            </li>
+            <li class="col-xs-6">
+                <p class="text-default text-center fs42" id="exitDate">出场时间：<span>{{getYMD(parkingOrderCarExitTime)}}</span></p>
+                <p class="text-blue text-center fs90" id='exitDatetime'>{{getHM(parkingOrderCarExitTime)}}</p>
+            </li>
+        </ul>
+        <!--End 进场时间和出场时间-->
+
+        <!--Begin 进场时间和经停时间-->
+        <ul id='payOtherRow' class="bills-date-box list-unstyled bg-color-FFF clearfix" ng-show="showBillDetail">
+            <li class="col-xs-6">
+                <p class="text-default text-center fs42">经停时长(时)</p>
+                <p class="text-blue text-center fs90" id='parkingOrderCarStayTime'>{{parkingOrderCarStayTime}}</p>
+                <i class="line"></i>
+            </li>
+            <li class="col-xs-6">
+                <p class="text-default text-center fs42">支付金额</p>
+                <p class="text-blue text-center fs90">
+                    <strong id='parkingOrderCost'>{{parkingOrderCost}} </strong>
+                    <span style="font-size:1.5rem;" ng-show="showCost">(元)</span>
+                </p>
+            </li>
+
+        </ul>
+        <!--End 进场时间和经停时间-->
+
+        <!--Begin 按钮-->
+        <div id="btnBox" class="bills-date-box list-unstyled bg-color-FFF text-center " ng-show="visible">
+            <button class="btn btn-fluid btn-success" ng-click="pay()">在线支付</button>
+        </div>
+        <!--End 按钮-->
+
+
+        <!--锯齿脚步-->
+        <div class="bg-color-FFF" style="height: 3rem;"></div>
+        <i class="icon bills-date-box-footer"></i>
+
+    </div>
+</div>
+<!--End 主体内容 -->
+<!-- <script src="js/jquery.min.js"></script>
+ -->
+
+<script>
+    function showInfoFromJava(str) {
+        /*[{
+         0：车牌号
+         1: 入场时间
+         2：出场时间
+         3：停留时长
+         4：金额
+         5：是否支付
+         }]*/
+        var rs = str.split('|'),
+                isPay = rs[5] == 'true' && true || false,
+                isIn = rs[1] && true || false,
+                isOut = rs[2] && true || false;
+        $("#exitDate span").text(getYMD(rs[1]));//入场年
+        $("#exitDatetime").text(getHM(rs[1]));//入场时间
+        $("#parkingOrderCarStayTime").text(rs[3]);//停留时间
+        $("#parkingOrderCost").text(rs[4]);//金额
+        $('#carNo').text(rs[0]);
+        $("#inDate span").text(getYMD(rs[2]));//出场年
+        $("#inDatetime").text(getHM(rs[2]));//出场时间
+
+        //显示在线支付按钮
+        if (!isPay && !isOut) { //未支付且未出场$scope.parameters.isExit=="false" && $scope.parkingOrderCarExitTime==""
+            $('#payOtherRow,#btnBox').hide();//$scope.visible = false ; //隐藏
+        } else if (!isPay && isIn) {//$scope.parameters.isExit=="false" && $scope.parkingOrderCarExitTime !=""
+            $('#payOtherRow,#btnBox').removeClass('ng-hide').show();
+        } else {
+            $('#payOtherRow,#btnBox').hide();
+        }
+
+        //$('#btnBox,#payOtherRow').removeClass('ng-hide').show();
+    }
+
+    /*获取年月日*/
+    var getYMD = function (str) {
+        if (str == "") {
+            return "";
+        }
+        return str.substr(0, 10);
+    }
+
+    /*获取时分*/
+    var getHM = function (str) {
+        if (str == "") {
+            return "";
+        }
+        return str.substr(11, 16);
+    }
+
+    /*$('.bills-date-box .btn').on('click', function () {
+     client.pay();
+     })
+
+     $('#sfmx').on('click', function () {
+     alert(1);
+     client.sfmx();
+     });*/
+
+</script>

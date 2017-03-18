@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.yinzitech.onlineparking.dao.parkingSys.ParkingInfoSysMapperDao">
+	<resultMap
+		type="com.yinzitech.onlineparking.entity.parkingSys.manager.ParkingManager"
+		id="ParkingInfoMapperMap">
+		<id column="parking_manager_id" property="parkingManagerId"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="parking_manager_phone" property="parkingManagerPhone"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="parking_manager_psd" property="parkingManagerPsd"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="parking_info_id" property="parkingInfoId"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="parking_manager_create_time" property="parkingManagerCreateTime"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="parking_manager_active_mark" property="parkingManagerActiveMark"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="parking_manager_name" property="parkingManagerName"
+			javaType="String" jdbcType="VARCHAR" />
+
+	</resultMap>
+
+	<select id="getParkingInfoMapper" resultMap="ParkingInfoMapperMap">
+		SELECT * FROM parking_manager WHERE 1=1
+		<if test="parkingManagerId != null and parkingManagerId != '' ">
+
+			AND parking_manager_id = #{parkingManagerId}
+		</if>
+		<if test="parkingManagerPhone != null and parkingManagerPhone != '' ">
+
+			AND parking_manager_phone like #{parkingManagerPhone}
+		</if>
+		<if test="parkingManagerPsd != null and parkingManagerPsd != '' ">
+
+			AND parking_manager_psd = #{parkingManagerPsd}
+		</if>
+		<if test="parkingInfoId != null and parkingInfoId != '' ">
+
+			AND parking_info_id = #{parkingInfoId}
+		</if>
+		<if
+			test="parkingManagerActiveMark != null and parkingManagerActiveMark != '' ">
+
+			AND parking_manager_active_mark = #{parkingManagerActiveMark}
+		</if>
+		<if test="parkingManagerName != null and parkingManagerName != '' ">
+
+			AND parking_manager_name like #{parkingManagerName}
+		</if>
+
+		ORDER BY parking_manager_create_time DESC
+	</select>
+
+
+	<update id="upParkingManager"
+		parameterType="com.yinzitech.onlineparking.entity.parkingSys.manager.ParkingManager">
+		UPDATE parking_manager
+		<trim prefix="SET" suffixOverrides=",">
+
+			<if test="parkingManagerPhone != null and parkingManagerPhone != '' ">
+				parking_manager_phone = #{parkingManagerPhone},
+			</if>
+
+			<if test="parkingManagerPsd != null and parkingManagerPsd != '' ">
+				parking_manager_psd = #{parkingManagerPsd},
+			</if>
+
+			<if test="parkingManagerName != null and parkingManagerName != '' ">
+				parking_manager_name = #{parkingManagerName},
+			</if>
+
+			<if test="parkingManagerActiveMark != null and parkingManagerActiveMark != '' ">
+				parking_manager_active_mark =
+				#{parkingManagerActiveMark},
+			</if>
+
+			<if test="parkingInfoId != null and parkingInfoId != '' ">
+				parking_info_id = #{parkingInfoId},
+			</if>
+		</trim>
+		WHERE parking_manager_id= #{parkingManagerId}
+
+	</update>
+</mapper>
+
+
+

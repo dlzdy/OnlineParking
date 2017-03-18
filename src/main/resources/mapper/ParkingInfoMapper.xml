@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.yinzitech.onlineparking.dao.parkingInfo.ParkingInfoMapperDao">
+	<resultMap type="com.yinzitech.onlineparking.entity.parkingInfo.ParkingInfo"
+		id="ParkingInfoMap">
+		<id column="parking_info_id" property="parkingInfoId" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="parking_info_name" property="parkingInfoName"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="parking_info_address" property="parkingInfoAddress"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="parking_info_longitude" property="parkingInfoLongitude"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="parking_info_latitude" property="parkingInfoLatitude"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="parking_info_parking_spaces" property="parkingInfoParkingSpaces"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="parking_info_rest_parking_spaces" property="parkingInfoRestParkingSpaces"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="parking_info_state" property="parkingInfoState"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="parking_info_create_time" property="parkingInfoCreateTime"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="parking_info_create_manager_type" property="parkingInfoCreateManagerType"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="parking_info_create_manager_id" property="parkingInfoCreateManagerId"
+			javaType="String" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="getParkingInfo" resultMap="ParkingInfoMap">
+		SELECT * FROM parking_info WHERE 1=1
+		<if test="parkingInfoId != null and parkingInfoId != '' ">
+
+			AND parking_info_id = #{parkingInfoId}
+		</if>
+		<if test="parkingInfoAddress != null and parkingInfoAddress != '' ">
+
+			AND parking_info_address like #{parkingInfoAddress}
+		</if>
+		<if test="parkingInfoState != null and parkingInfoState != '' ">
+
+			AND parking_info_state = #{parkingInfoState}
+		</if>
+		<if test="parkingInfoName != null and parkingInfoName != '' ">
+
+			AND parking_info_name like #{parkingInfoName}
+		</if>
+		ORDER BY parking_info_create_time DESC
+	</select>
+</mapper>
+
+
+

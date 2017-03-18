@@ -1,0 +1,12 @@
+<!--Begin 主体内容 -->
+<section class="error-container text-center" >
+    <i class="icon icon-error"></i>
+    <p class="fs48 text-center error-text">页面加载失败，请重新加载！</p>
+    <button id="btn" class="btn btn-default fs48">重新加载</button>
+</section>
+<!--End 主体内容 -->
+<script>
+    document.getElementById('btn').onclick=function(){
+        client.reload();
+    }
+</script>

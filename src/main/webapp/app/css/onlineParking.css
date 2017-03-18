@@ -1,0 +1,280 @@
+@import "common.css";
+@import "animation.css";
+
+/*custom==========================================================================================*/
+body{ font-family:"Segoe UI", microsoft yahei, Arial, sans-serif; background-color:#EDEDED; font-size:1.333rem; color:#A0A0A0; }
+/*icon*/
+.icon{ display:inline-block; background-size:100%; background-color:transparent; background-repeat:no-repeat; }
+.icon-clock{ width:1.6rem; height:1.6rem; background-image:url("images/icon-clock.png"); }
+.icon-clock-blue{ width:1.6rem; height:1.8rem; background-image:url("images/icon-clock-blue.png"); }
+.icon-money{ width:1.234rem; height:1.234rem; background-image:url("images/icon-money.png"); position:relative; top:0.22rem; left:-.2rem; }
+.icon-pay{ width:1.234rem; height:1.234rem; background-image:url("images/icon-pay.png"); position:relative; top:0.22rem; left:-.2rem; }
+.icon-off{ width:1.467rem; height:1.533rem; background-image:url("images/userCenter/icon-off.png"); position:relative; top:0.22rem; left:-.2rem; }
+.icon-no-bill{width:3.2rem;height:3.3rem;background-image:url("images/icon-no-bill.png");}
+.icon-no-car{width:4rem;height:3rem;background-image:url("images/icon-no-car.png")}
+/*arrow*/
+.icon-arrow{ width:.8rem; height:1.234rem; }
+.icon-arrow-right{ background-image:url(images/icon-arrow-right.png); }
+/*text*/
+.text-blue{ color:#0096FF; }
+.text-black{ color:#000; }
+.text-white{ color:#FFF; }
+textarea{resize:none;}
+/*color*/
+.text-default{ color:#9F9F9F; }
+/*a*/
+a, a:hover, a:focus, a:active{ color:#C7C7C7; outline:none; text-decoration:none; }
+/*fontSize*/
+.fs36{ font-size:1.2rem !important; }
+.fs42{ font-size:1.4rem !important; }
+.fs46, .fs48{ font-size:1.6rem !important; }
+.fs50{ font-size:1.667rem !important; }
+.fs90{ font-size:3rem !important; }
+/*input*/
+button{ background-color:transparent;}
+.btn{ border:0; border-radius:3rem; font-size:1.534rem !important; font-weight:700;  border:0; outline:none !important;}
+.btn-fluid{ width:70% !important; padding:1rem 6rem; }
+.btn-success,
+.btn-success.focus,
+.btn-success:focus,
+.btn-success.hover,
+.btn-success:hover,
+.btn-success.active,
+.btn-success:active{ background-color:#0097FF; }
+.btn-success.disabled,.btn-success[disabled]{ background-color:#A0A0A0; }
+.btn-danger,
+.btn-danger.focus,
+.btn-danger:focus,
+.btn-danger.hover,
+.btn-danger:hover,
+.btn-danger.active,
+.btn-danger:active{ background-color:#F26C4F; }
+label{ font-weight:normal; }
+/*layout*/
+.container-padding-top{ padding-top:6rem !important; }
+.padding-LR2{ padding-left:1rem; padding-right:1rem; }
+.m0{ margin:0 !important; }
+.mr1{ margin-right:1rem !important; }
+.-mr1{margin-right:-1rem!important}
+.mt1{ margin-top:1rem !important;; }
+.mb1{ margin-bottom:1rem !important;; }
+.mt50{ margin-top:50px; margin-top:1.667rem !important; }
+.mt60{ margin-top:60px; margin-top:2rem !important; }
+.mt70{ margin-top:70px; margin-top:2.333rem !important; }
+.mtb5{margin-bottom:1rem!important}
+
+/*.modal*/
+.modal{ outline:none; }
+/*bgColor*/
+.bg-color-blue{ background-color:#0097FF; }
+.bg-color-FFF{ background-color:#FFF; }
+/*分隔线*/
+.line{ width:.1rem; height:100%; background-color:#C9C9C9; }
+/*img*/
+.img{ background:url("images/img-bg.png") no-repeat center center; background-size:30%; border:0; }
+/*box-shadow*/
+.box-shadow{box-shadow:0 0 2px 2px #ccc}
+/*reset===========================================================================================*/
+.container-fluid{ padding:2rem; }
+ul{ padding:0; margin:0; }
+p{ margin:0; word-break:break-all; text-align:justify; }
+.btn-default,
+.btn-default:hover{ width:100%; border-radius:3rem; color:#0097FF; border:1px solid #0097FF; text-align:center; background-color:#FFF !important; font-size:2rem; }
+.btn-default.focus,
+.btn-default:focus{ color:#FFF !important; background-color:#0097FF !important; outline:none; font-weight:700; }
+.btn-noBg{ background-color:transparent !important; border:.1rem solid #0097FF; }
+.form-control{ font-size:inherit; }
+.modal-dialog{ margin:20px auto; }
+.modal-header{ border-bottom:.2rem solid #31b6e7; padding:1rem 2rem; }
+/*==========================================屏幕适应===============================================*/
+@media screen and (max-width:9.667rem){
+    .container-fluid{ padding-left:0; padding-right:0; }
+}
+/*index===========================================================================================*/
+.navbar{ min-height:0; border:0; }
+.navbar .parkingAddress{ min-height:0; height:3.667rem; line-height:3.667rem; background:#0097FF; font-size:1.2rem; color:#FFF; padding-left:2rem; position:relative; z-index:10001; }
+.parkingInfoBox{ bottom:0; position:relative; z-index:1000; }
+.navbar .icon-gps{ width:1.067rem; height:1.567rem; background-image:url("images/icon-gps.png"); position:relative; top:.2rem; margin-right:1.6rem; }
+.navbar .icon-navigation{ width:3.867rem; height:3.867rem; background-image:url("images/icon-navigation.png"); position:absolute; right:2.134rem; top:-1.734rem; z-index:1004; }
+.parkingInfoBox-bg, .parkingInfo-content{ width:100%; height:7.2rem; position:absolute; top:-7.3rem; left:0; z-index:1003; color:#3E3A39; }
+.parkingInfoBox-bg{ background-color:#FFF; opacity:.8; filter:alpha(opacity=80); z-index:1002; }
+.parkingInfo-content{ padding:0 2rem; box-shadow:0 -0.1rem 0.5rem 0 #ccc; }
+.parkingInfo-content h3{ margin-top:1.734rem; font-size:1.534rem; margin-bottom:1rem; }
+.parkingInfo-info{ line-height:1.42857; }
+.parkingInfo-info span{ margin-right:1.8rem; }
+.icon-parkingInfo-hide{ width:3.667rem; height:1.667rem; background-image:url("images/btn-parkingInfo-hide.png"); position:absolute; top:-1.4rem; left:50%; margin-left:-1.8rem; }
+.btn-getCurrentPosition{ width:3.934rem; height:3.934rem; background-image:url("images/icon-getCurrentPosition.png"); position:absolute; right:1.93rem; top:-12.266rem; border:0; }
+#maps img{ background:none; }
+/*bills===========================================================================================*/
+.bill-tools-box{ height:4.534rem; }
+.plate{ width:11rem; height:3.634rem; padding-top:1rem; text-align:center; font-style:normal; font-size:1.734rem; font-weight:500; background-image:url("images/bills/plate.png"); margin:0 auto 1.534rem; display:block; letter-spacing:.2rem; }
+.plate-blue{ background-image:url("images/bills/plate-blue.png"); }
+.car-list .active .plate{ background-image:url("images/bills/plate-blue.png"); color:#FFF; }
+.remind-box{ margin-top:2.467rem; border-top:.134rem solid #0097FF; transition:all .5s ease; bottom:-20rem; }
+.remind-box.active{ border-top:.134rem solid #0097FF; transition:all .3s ease; bottom:0; }
+.bills-date-box{ padding:2.2rem 0; position:relative; margin-bottom:.2rem; }
+.bills-date-box li{ padding:0; }
+.bills-date-box .line{ position:absolute; right:0; top:0; }
+.bills-date-box-footer{ height:1rem; display:block; background:url("images/bills/footer.png") repeat-x center center / contain; }
+.bills-history-item{ position:relative; border-left:.1rem solid #0097FF; }
+.bills-history-item .icon-circle{ position:absolute; left:-.8rem; top:-.1rem; }
+.bills-history-item .label-group{ padding-left:2rem; }
+.icon-circle{ width:1.533rem; height:1.533rem; background-image:url("images/bills/icon-circle.png"); }
+.bills-history-box{ padding:1.6rem 4rem 1.6rem 1.6rem; position:relative; }
+.bills-history-footer{ height:1.46em; }
+.nav-mini-content li:last-child a .bills-history-footer{ display:none; }
+.bills-history-item .icon-arrow-right{ position:absolute; top:50%; right:3rem; margin-top:-.6rem; }
+/*bills-detail====================================================================================*/
+.bills-detail img{ height:17.8rem; }
+.bills-detail .hover-white:hover{color:#fff;cursor:pointer}
+.bills-detail .plate{ position:relative; top:.8rem; }
+.panel-blue{ padding:1.2rem 1.8rem; background:#0096FF; }
+.bills-detail-inPage{position: fixed;width:100%;height:100%;z-index:100000000;top:0;background:#EEE;}
+/*perpaid=========================================================================================*/
+.user-perpaid{ padding:0 1.2rem; }
+.user-perpaid input{ text-align:center; }
+.prepaid .imgHeaderList li img{ width:3.833rem; height:3.833rem; background:none; margin-top:0.3rem; }
+/*userCenter======================================================================================*/
+.logo-userCenter{ width:8.5667rem; margin:5.267rem auto 1.333rem; display:block; }
+/*userCenter-userInfo*/
+.userCenter-userInfo .form-noBorder{ width:100%; float:right; border:0; margin:1.2rem -1.1rem 0 0; box-shadow:none; text-align:right; }
+.userImg{ width:7.2rem; height:7.13333rem; display:inline-block; background-image:url("images/userCenter/admin_man.png"); background-size:100%; }
+.userImg.userWoman{ background-image:url("images/userCenter/admin_woman.png"); }
+.userCenter-userInfo .userImg{ margin-bottom:1.333rem; border-radius:50%; border:0.2rem solid #FFF; }
+.userCenter-userInfo .bg-color-blue{ padding:1.5rem 0 1.8rem; }
+.remind-box .text-blue{ margin-top:-.2rem; }
+.userCenter-userInfo .form-control{ background:#FFF !important; }
+.userCenter-userInfo .page-title{ background-color:#0097FF; color:#FFF; }
+.userCenter-userInfo .birText{position: absolute;}
+/*userCenter-callet======================================================================================*/
+.userCenter-wallet .imgHeaderList{ margin-top:-1rem; }
+.userCenter-wallet .imgHeaderList li .content{ margin:0; }
+.userCenter-wallet .imgHeaderList li{ padding-right:2rem; }
+.userCenter-wallet .imgHeaderList li b{ position:relative; top:.8rem; }
+.takeUp-box{ height:5.067rem; padding:1.833rem 0 0 2rem; }
+.moneyBox-circle{ width:10rem; height:10rem; margin:0 auto; padding:.6rem; border-radius:50%; background-color:#0097FF; color:#FFF; text-align:center; }
+/*userCenter-addCar.html==================================================================================*/
+.addCar h4{ margin:3.8333rem 0 2rem; }
+.carNoBox{ width:28rem; line-height:3.7rem; border:2px solid #0096FF; border-radius:5px; margin:0 auto;}
+.carNoBox input,.carNoBox .inputIos, .dotInput{padding:0; width:3.46667rem; height:4.16667rem;line-height:4.5rem;border: 1px solid #0096FF;border-width:0 1px ; margin: -1px 0 -2px -1px; float:left; text-align:center; color:#0096FF; font-size:2.5rem;background:transparent;border-radius:0; }
+.dotInput{ float:right; }
+.dotInput .dot{ width:.5rem; height:.5rem; border:3px solid #0096FF; border-radius:50%; display:block;margin: 1.9rem 0 0 1.3rem; }
+#inputBox input,#inputBox .inputIos{text-transform:uppercase; }
+#inputBox input:last-child,#inputBox .inputIos:last-child{ border-right:0; width:3.2rem;}
+.carNoBox button{ width:7.333rem; font-size:1.733rem; color:#0096FF; padding:0;margin:0;border:0;}
+#inputBox{ display:inline-block; float:right; }
+.carNoBox button .icon{ width:7.333rem; font-size:1.733rem; width:.866667rem; height:.466667rem; background-image:url("images/userCenter/carNoBox-arrow-down.png"); position:relative; left:0; top:-.3rem; }
+#treelist_dummy{display:none}
+.spanFontSize{font-size:2rem ;font-weight: 600;letter-spacing: 5px;position:relative;top:.2rem;}
+
+
+/*ios模拟键盘*/
+.addCar h4{ margin:3.8333rem 0 2rem; }
+.carNoBox{ width:28rem; line-height:3.7rem; border:2px solid #0096FF; border-radius:5px; margin:0 auto;}
+.carNoBox .input, .dotInput{padding:0; width:3.46667rem; height:4.16667rem;border: 1px solid #0096FF;border-width:0 1px ; margin: -1px 0 -2px -1px; float:left; text-align:center; color:#0096FF; font-size:2.5rem;background:transparent;border-radius:0; }
+.dotInput{ float:right; }
+.dotInput .dot{ width:.5rem; height:.5rem; border:3px solid #0096FF; border-radius:50%; display:block;margin: 1.9rem 0 0 1.3rem; }
+#inputBox .input{text-transform:uppercase;padding-top: 0.3rem; }
+#inputBox .input:last-child{ border-right:0; width:3.2rem;}
+.carNoBox button{ width:7.333rem; font-size:1.733rem; color:#0096FF; padding:0;margin:0;border:0;}
+#inputBox{ display:inline-block; float:right; }
+.carNoBox button .icon{ width:7.333rem; font-size:1.733rem; width:.866667rem; height:.466667rem; background-image:url("images/userCenter/carNoBox-arrow-down.png"); position:relative; left:0; top:-.3rem; }
+#treelist_dummy{display:none}
+.spanFontSize{font-size:2rem ;font-weight: 600;letter-spacing: 5px;position:relative;top:.2rem;}
+.input-curr{box-shadow:0 0 6px red;}
+@media screen and (max-width:330px){
+    .carNoBox{transform:scale(0.75);}
+}
+.addCar .input-curr{ box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.9);}
+/*message-detail========================*/
+.color-black{color: #000000}
+.message-title{font-size: 1.6rem;margin: 0;font-weight: 600;}
+.message-subtitle{margin: 1.333rem auto 2rem 0 ;font-size: 1.2rem;color: #a0a0a0;}
+.message-img{height: 27rem;margin-top: -2rem;margin-bottom: -2rem}
+.message-content{font-size: 1.467rem;text-indent:2em;line-height: 2.333rem;margin: 2rem 0 3rem;}
+.marginL5{dispaly:inline-block;margin-right:0.833rem}
+
+/*feedBack-========================*/
+.feedBack .btn{width:10rem; height:4rem;text-align:center; padding:0; font-size:1.4rem !important;font-weight:700;}
+.feedBack .btn-success[disabled]{background:#ccc}
+/*autoPay-=============*/
+.bgWhite{background: #fff}
+.content{margin-top:2rem }
+.autopay .content{padding-left:2.2rem;padding-right: 2rem;line-height: 6.333rem;}
+.autopay .text{font-size: 1.533rem;color: #000}
+.autopay .instruction{line-height: 2.067rem;margin-top: 1.333rem;padding-left:2.2rem;padding-right: 2rem;font-size: 1.2rem;color: #a0a0a0}
+.content .btnbox{margin-top: -2px }
+.l{float: left}
+.r{float: right;}
+.clearfix { *zoom: 1; }
+.clearfix:before,
+.clearfix:after {  display: table; line-height: 0;content: ""; }
+.clearfix:after { clear: both; }
+.box {top: 2.7rem; background:  #0095FF none repeat scroll 0 0;border-radius: .5rem;height: .867rem;position: relative;transition: all 0.4s ease 0s; width: 3.867rem;right:1rem;}
+.box input[type="checkbox"]{cursor: pointer; height: 100%;opacity: 0;width: 100%;position: absolute;}
+.box label{ background: #fff none repeat scroll 0 0;border-radius: 50%;box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    height: 1.867rem;left: 0;top:-5px;position: absolute;transition: all 0.3s linear 0s;width: 1.867rem;}
+
+/*charge-detail 收费明细=======================*/
+.charge-detail .container-fluid{padding: 2rem 0 }
+.charge-detail .bills-date-box{padding: 2.2rem 2rem}
+.charge-detail p{font-size:1.4rem}
+.charge-detail-inPage{ height: 100%; position: fixed;top: 0;width: 100%;z-index: 1000000; background: #eee}
+
+/*message-list*/
+.message-list .container-fluid{padding: 2rem 0 }
+.message-list .bills-date-box{padding: 0 2rem; position: relative;}
+.message-list .message-icon{padding-right:1.4rem;margin-top: -2.9rem;position: absolute;top: 50%;}
+.message-icon img{  height: 5.8rem;width: 5.8rem;}
+.message-list .message-box { margin-left: 7.1rem;padding-top: 2rem}
+.message-list p{margin: 0;padding: 0;text-indent: 0}
+.message-title{font-size:1.533rem ;color: #000}
+.message-list .message-content,.message-list .message-date{font-size: 1.2rem;line-height: 1.633rem}
+.message-list .message-content{margin-top: 1.067px}
+.message-list .message-date{text-align: right;line-height: 2.5rem;line-height: 2.5rem }
+
+
+/*车辆列表*/
+.car-list .container-fluid{padding-top: 1.6rem!important;padding-left: 0!important;padding-right: 0!important}
+
+.alarm-blue{left: 0.4rem;
+    position: relative;
+    top: 0.22rem;width:1.6rem;height:1.433rem;background: url(images/icon-alarm-blue.png) no-repeat left center; background-size:100%;}
+.alarm{left: 0.4rem;
+    position: relative;
+    top: 0.22rem;width:1.6rem;height:1.433rem;background: url(images/icon-alarm.png) no-repeat left center; background-size:100%;}
+.mt33{margin-top: 1.1rem}
+.car-list .btn{margin-top: 0.3rem}
+.car-list .box{top: 1.3rem}
+.alarm-time:hover{cursor: pointer;}
+.car-list .plate-blue{width:11rem; height:3.634rem; padding-top:1rem; text-align:center; font-style:normal; font-size:1.734rem; font-weight:500;display:block; letter-spacing:.2rem; }
+.car-list .plate{background:url(images/bills/plate-white.png) no-repeat left center; background-size:100%;margin: 0;color: #0096ff;}
+.car-list ul .h120{height: 4rem}
+#alarmModal .modal-body ul li{border:none;}
+#alarmModal .imgHeaderList li .iRadio{left: 2rem!important}
+#alarmModal  .modal-footer .btn{width: 6rem}
+#alarmModal  .modal-dialog{margin: .667rem auto}
+.car-list .btn-box{ bottom: -.2rem; position: fixed;width: 100%;background:#EDEDED;z-index:2;}
+
+.box label{ left:0; }
+.box{ background:#ccc; }
+.active .box label{ left:2.133rem; }
+.active .box{ background:#0095FF; }
+
+
+.bills-list-del{padding:0; position:relative;height:7rem;overflow:hidden;}
+.list-box{padding:1.7rem 1rem; position:absolute;left:0;width:100%;background:#FFF;z-index:2;transition:left .3s 0s ease;}
+.list-btn-box{ position:absolute; right:0;width:100%;height:100%;background:#FF0000;}
+.show-del .list-box{left:-30%;transition:left .3s 0s ease;}
+.icon-del{background-image:url("images/icon-del.png");width:1.6rem;height:1.6rem;float:right;margin:3rem 11% 0 0;}
+
+
+/*水平 垂直居中*/
+.central{ left: 50%; margin-left: -5rem; margin-top: -4rem;position: absolute; top: 50%;}
+/*盒子背景3d*/
+.box-3d{ box-shadow: 0 0 1px 1px #c8c8c8;}
+
+
+/*================徽章颜色=============*/
+.badge.red{background:#d9534f}
+.badge.red+em{font-weight:normal;font-style: normal;}

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yinzitech.onlineparking.dao.msg.MessageMapperDao">
+	<resultMap type="com.yinzitech.onlineparking.entity.msg.Message"
+		id="MessageMap">
+		<id column="msg_id" property="msgId" javaType="String" jdbcType="VARCHAR" />
+		<result column="msg_name" property="msgName" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="msg_status" property="msgStatus" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="msg_body" property="msgBody" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="msg_body_img_url" property="msgBodyImgUrl"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="msg_time" property="msgTime" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="msg_send_time" property="msgSendTime" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="msg_send_name" property="msgSendName" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="msg_user_id" property="msgUserId" javaType="String"
+			jdbcType="VARCHAR" />
+
+	</resultMap>
+
+	<select id="queryMessage" resultMap="MessageMap">
+		select * from message WHERE 1=1
+		<if test="msgStatus != null and msgStatus != '' ">
+			AND msg_status = #{msgStatus}
+		</if>
+		<if test="msgId != null and msgId != '' ">
+			AND msg_id = #{msgId}
+		</if>
+		<if
+			test="startTime != null and startTime != '' and endTime != null and endTime != ''">
+			AND msg_time BETWEEN #{startTime} AND
+			#{endTime}
+		</if>
+		GROUP BY msg_name
+		ORDER BY msg_time DESC
+	</select>
+
+
+</mapper>
+
+
+

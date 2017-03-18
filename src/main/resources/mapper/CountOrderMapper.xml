@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yinzitech.onlineparking.dao.count.CountOrderDao">
+	<resultMap type="com.yinzitech.onlineparking.entity.count.CountOrder"
+		id="CountOrderMap">
+		<id column="year" property="year" javaType="String" jdbcType="VARCHAR" />
+		<result column="month" property="month" javaType="String"
+			jdbcType="VARCHAR" />
+
+		<result column="day" property="day" javaType="String" jdbcType="VARCHAR" />
+
+		<result column="countCar" property="countCar" javaType="String"
+			jdbcType="VARCHAR" />
+
+		<result column="cost" property="cost" javaType="String"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="getCountOrderByDay" resultMap="CountOrderMap">
+		SELECT
+		YEAR (
+		parking_order_create_time
+		) as year,
+		MONTH (
+		parking_order_create_time
+		) as month,
+		DAY (
+		parking_order_create_time
+		) as
+		day,
+		COUNT(*) countCar,
+		SUM(parking_order_cost) as cost
+		FROM
+		parking_order
+		WHERE 1=1
+		<if test="payState != null and payState != '' ">
+			and parking_order_pay_state = #{payState}
+		</if>
+		<if test="payCash != null and  payCash != '' ">
+			and parking_order_pay_cash = #{payCash}
+		</if>
+
+		<if test="numberState != null and  numberState != '' ">
+			and parking_order_car_number_state = #{numberState}
+		</if>
+		<if test="parkingInfoId != null and parkingInfoId != '' ">
+			and parking_order_parking_info_id = #{parkingInfoId}
+		</if>
+		<if
+			test="startTime != null and  startTime != '' and endTime != null and endTime != '' ">
+			and parking_order_create_time BETWEEN #{startTime} and
+			#{endTime}
+		</if>
+		GROUP BY
+		YEAR (
+		parking_order_create_time
+		),
+		MONTH (
+		parking_order_create_time
+		),
+		DAY (
+		parking_order_create_time
+		)
+	</select>
+
+
+	<select id="getCountOrderByMonth" resultMap="CountOrderMap">
+		SELECT
+		YEAR (
+		parking_order_create_time
+		) as year,
+		MONTH (
+		parking_order_create_time
+		) as month,
+		COUNT(*) countCar,
+		SUM(parking_order_cost) as cost
+		FROM
+		parking_order
+		WHERE 1=1
+		<if test="payState != null and payState != '' ">
+			and parking_order_pay_state = #{payState}
+		</if>
+		<if test="payCash != null and  payCash != '' ">
+			and parking_order_pay_cash = #{payCash}
+		</if>
+
+		<if test="numberState != null and  numberState != ''">
+			and parking_order_car_number_state = #{numberState}
+		</if>
+		<if test="parkingInfoId != null and parkingInfoId != '' ">
+			and parking_order_parking_info_id = #{parkingInfoId}
+		</if>
+		<if
+			test="startTime != null and  startTime != '' and endTime != null and endTime != '' ">
+			and parking_order_create_time BETWEEN #{startTime} and
+			#{endTime}
+		</if>
+		GROUP BY
+		YEAR (
+		parking_order_create_time
+		),
+		MONTH (
+		parking_order_create_time
+		)
+	</select>
+
+
+	<select id="getCountOrderByYear" resultMap="CountOrderMap">
+		SELECT
+		YEAR (
+		parking_order_create_time
+		) as year,
+		COUNT(*) countCar,
+		SUM(parking_order_cost) as cost
+		FROM
+		parking_order
+		WHERE 1=1
+		<if test="payState != null and payState != '' ">
+			and parking_order_pay_state = #{payState}
+		</if>
+		<if test="payCash != null and  payCash != '' ">
+			and parking_order_pay_cash = #{payCash}
+		</if>
+
+		<if test="numberState != null and  numberState != ''">
+			and parking_order_car_number_state = #{numberState}
+		</if>
+		<if test="parkingInfoId != null and parkingInfoId != '' ">
+			and parking_order_parking_info_id = #{parkingInfoId}
+		</if>
+		<if
+			test="startTime != null and  startTime != '' and endTime != null and endTime != '' ">
+			and parking_order_create_time BETWEEN #{startTime} and
+			#{endTime}
+		</if>
+		GROUP BY
+		YEAR (
+		parking_order_create_time
+		)
+	</select>
+</mapper>
+
+
+

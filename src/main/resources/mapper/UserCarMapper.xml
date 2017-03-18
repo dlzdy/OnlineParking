@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.yinzitech.onlineparking.dao.client.carManage.QueryUserCarDao">
+	<resultMap
+		type="com.yinzitech.onlineparking.entity.client.carManage.ClinetUserCarManage"
+		id="UserCarMap">
+		<id column="car_manage_id" property="carManageId" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="client_user_id" property="clientUserId"
+			javaType="String" jdbcType="VARCHAR" />
+
+		<result column="client_user_car_no" property="clientUserCarNo"
+			javaType="String" jdbcType="VARCHAR" />
+
+		<result column="client_user_car_position" property="clientUserCarPosition"
+			javaType="String" jdbcType="VARCHAR" />
+
+		<result column="client_user_car_active_mark" property="clientUserCarActiveMark"
+			javaType="String" jdbcType="VARCHAR" />
+
+		<result column="car_no_setting_time" property="carNoSettingTime"
+			javaType="String" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="getUserCar" resultMap="UserCarMap">
+		SELECT * FROM
+		clinet_user_car_manage WHERE 1=1
+		<if test="carManageId != null and carManageId != '' ">
+			AND car_manage_id = #{carManageId}
+		</if>
+		<if test="clientUserId != null and clientUserId != '' ">
+			AND client_user_id = #{clientUserId}
+		</if>
+		<if test="clientUserCarNo != null and clientUserCarNo != '' ">
+			AND client_user_car_no like #{clientUserCarNo}
+		</if>
+		<if
+			test="clientUserCarActiveMark != null and clientUserCarActiveMark != '' ">
+			AND client_user_car_active_mark = #{clientUserCarActiveMark}
+		</if>
+		<if
+			test="startTime != null and startTime != '' and endTime != null and endTime != '' ">
+			AND car_no_setting_time BETWEEN #{startTime} AND #{endTime}
+		</if>
+		ORDER BY car_no_setting_time DESC
+	</select>
+
+</mapper>
+
+
+

@@ -1,0 +1,97 @@
+<link rel="stylesheet" type="text/css" href="framework/mobiscroll-2.13.2/css/mobiscroll.custom-2.6.2.min.css">
+
+<div ng-controller="ctrlUserCenterAddCar" ng-model="UserCenterAddCar">
+    <!--Begin 主体内容-->
+    <div class="addCar">
+        <h4 class="text-black text-center">请添加您的车牌号</h4>
+
+        <!--Begin 车牌-->
+        <div class="carNoBox clearfix">
+            <button id="changeCarNo">
+                <span id="carNo" class="spanFontSize"></span>
+                <i class="icon"></i>
+            </button>
+
+            <div id="inputBox" class="clearfix">
+                <div class="input" ng-class="{'input-curr':indexCurrInput==0}" ng-bind="virtualKeybordData[0]" ng-click="setCurrIndex(0)"></div>
+                <div class="input" ng-class="{'input-curr':indexCurrInput==1}" ng-bind="virtualKeybordData[1]" ng-click="setCurrIndex(1)"></div>
+                <div class="input" ng-class="{'input-curr':indexCurrInput==2}" ng-bind="virtualKeybordData[2]" ng-click="setCurrIndex(2)"></div>
+                <div class="input" ng-class="{'input-curr':indexCurrInput==3}" ng-bind="virtualKeybordData[3]" ng-click="setCurrIndex(3)"></div>
+                <div class="input" ng-class="{'input-curr':indexCurrInput==4}" ng-bind="virtualKeybordData[4]" ng-click="setCurrIndex(4)"></div>
+                <!--<input type="text"  ng-model="carNoFir" />
+                <input type="text"  ng-model="carNoSec" />
+                <input type="text"  ng-model="carNoThir" />
+                <input type="text"  ng-model="carNoFor" />
+                <input type="text"  ng-model="carNoFiv" />-->
+            </div>
+ 			
+            <div class="dotInput">
+                <i class="dot"></i>
+            </div>
+        </div>
+        <!--End 车牌-->
+
+        <p style="padding: 3rem ;">通过添加您的车牌号信息，您可以享受我们的停车便利和优惠政策</p>
+
+        <!--Begin 按钮-->
+        <div class="bills-date-box text-center ">
+            <button id="btnSaveCarNo" class="btn btn-fluid btn-success disabled" ng-class="{disabled:isBtnDisabled}" ng-click="saveCarNoIos()">保存</button>
+        </div>
+        <!--End 按钮-->
+
+        <!-- 滚动弹窗中的数据 (隐藏)-->
+        <ul id="treelist">
+            <li ng-repeat="spanArr in treeList  track by $index">
+                <span ng-bind="spanArr.jc"></span>
+                <ul>
+                    <!--  <li ng-repeat=" liArr  in spanArr.dm  track by $index" ng-bind="liArr"></li>   -->
+                    <li ng-repeat=" liArr  in zm  track by $index" ng-bind="liArr"></li>
+                </ul>
+            </li>
+        </ul>
+        <!--滚动弹窗中的数据 结束 -->
+    </div>
+    <!--Begin 主体内容-->
+    <div virtual-keybord></div>
+</div>
+
+<script type="text/javascript" src="framework/mobiscroll-2.13.2/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="framework/mobiscroll-2.13.2/js/mobiscroll.custom-2.6.2.min.js"></script>
+<script src="../app/js/pages/userCenter-addCar.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var i = Math.floor($('#treelist>li').length / 2),
+                j = Math.floor($('#treelist>li').eq(i).find('ul li').length / 2);
+        $("#treelist").mobiscroll().treelist({
+            theme: "android-ics light",
+            lang: "zh",
+            mode: 'scroller', //选择模式
+            defaultValue: [i, j],
+            width: 80, //窗口宽度
+            cancelText: '取消',
+            placeholder: '选择车型',
+            headerText: function (valueText) {
+                return "选择车型";
+            },
+            formatResult: function (array) { //返回自定义格式结果
+                //将选中的车牌号赋值给span
+                $("#carNo").text($('#treelist>li').eq(array[0]).children('span').text() + $('#treelist>li').eq(array[0]).find('ul li').eq(array[1]).text().trim(' '));
+                //  return $('#treelist>li').eq(array[0]).children('span').text() +$('#treelist>li').eq(array[0]).find('ul li').eq(array[1]).text().trim(' ');
+            }
+        });
+
+        $("#changeCarNo").click(function () {
+            $("#treelist_dummy").trigger('click');
+        });
+
+        var $inputs = $('#inputBox div');
+        $inputs.on('click', function (e) {
+            $('.keyBord').addClass('show');
+            e.stopPropagation();
+        });
+
+        $('body').on('click', function (e) {
+            $('.keyBord').removeClass('show');
+        });
+    })
+</script>

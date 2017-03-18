@@ -1,0 +1,105 @@
+<link rel="stylesheet" href="framework/iScroll/mobiscroll.2.13.2.css">
+<style>
+    .dwl{z-index:99999999999;display:block!important;top:0;}
+</style>
+<div class="car-list" ng-controller="carListCtrl">
+    <div class="container-fluid" style="padding-bottom: 10rem;"> 
+        <div ng-hide='cars' class='text-center' style="margin-left: -2rem;">页面加载中……</div>
+
+       <!--  <div class="list-null text-center" ng-show="cars.result==0 || cars.length==0" style="margin-left: -2rem;">
+            <i class="icon icon-list-null"></i>
+
+            <div class="text-3d">您未添加车辆</div>
+        </div> -->
+        
+        <div class="text-center central" ng-show="cars.result==0 || cars.length==0">
+       	   <i class="icon icon-no-car"></i>
+       		<div class="text-3d">您未添加车辆</div>
+        </div>
+
+        <!--车辆列表 begin-->
+        <ul class="bills-date-box list-unstyled bg-color-FFF clearfix bills-list-del"
+            ng-class="{'show-del': showDel }"
+            ng-repeat="car in cars.datas"
+            ng-swipe-left="(car.clientUserCarActiveMark=='disable')&&(showDel=true) "
+            ng-swipe-right="showDel=false">
+
+            <div class="list-box" ng-class=" {'active':car.clientUserCarActiveMark=='enable'} ">
+                <li class="alarm-time col-xs-4">
+                    <i class="icon plate text-white pull-left" ng-bind="car.clientUserCarNo"></i>
+                </li>
+                <li class="col-xs-4">
+                    <label class="label-group text-default mt1 pull-right test -mr1" iscroll car="car" ng-click="setRemindTime(car)"
+                           ng-show="car.clientUserCarActiveMark=='enable'">
+                        <i class="icon " ng-class="{'alarm-blue':car.remindTime!='','alarm':car.remindTime==''}"></i>
+                        提醒
+                    </label>
+                </li>
+                <li class="col-xs-4 h120">
+                    <div class="box pull-right mr1"  ng-click="changeState(car)">
+                        <input type="checkbox">
+                        <label></label>
+                    </div>
+                </li>
+            </div>
+            <div class="list-btn-box" ng-click="del(car)">
+                <i class="icon icon-del"></i>
+            </div>
+        </ul>
+        <!--车辆列表 end-->
+        
+        <p class="padding-LR2  fs36 mb45 mt1">点击下方添加车辆按钮添加您的车牌信息，左滑可以删除车辆，可设置停车提醒功能。</p>
+    <!--添加车辆-->
+    <div class="btn-box bills-date-box  text-center ">
+        <button class="btn btn-fluid btn-success"  ng-click="addCar()">添加车辆</button>
+    </div>
+    </div>
+    
+    
+
+
+
+
+
+
+    <!--设置闹钟 模态框 modal begin-->
+    <div class="modal fade" id="alarmModal" role="dialog" aria-labelledby="gridSystemModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!--header begin-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="gridSystemModalLabel">提醒设置</h4>
+                </div>
+                <!--header end-->
+                <!--body begin -->
+                <div class="modal-body">
+                    <div class="container-fluid">
+
+                        <input type="text" ng-model="carInModel.remindTime">
+
+                        <div>{{carInModel.clientUserCarNo}}</div>
+
+
+                    </div>
+                </div>
+                <!--body end -->
+                <!--footer begin-->
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-xs-2 col-xs-offset-2">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="timeStar()">开始</button>
+                        </div>
+                        <div class="col-xs-2 col-xs-offset-4">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="timeStop()">停止</button>
+                        </div>
+                    </div>
+                </div>
+                <!--footer end-->
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!--设置闹钟 模态框 modal end-->
+</div>
+<!--<script src="framework/jQuery/jquery-1.9.1.js"></script>-->
+<script src="framework/iScroll/mobiscroll.2.13.2.js"></script>

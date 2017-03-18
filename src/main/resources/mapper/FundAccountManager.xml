@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.yinzitech.onlineparking.dao.fundAccountManage.QueryFundAccountDao">
+	<resultMap
+		type="com.yinzitech.onlineparking.entity.fundAccountManage.FundAccountManage"
+		id="FundMap">
+		<id column="fund_account_id" property="fundAccountId" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="cust_id" property="custId" javaType="String"
+			jdbcType="VARCHAR" />
+
+		<result column="subaccount_type" property="subaccountType"
+			javaType="String" jdbcType="VARCHAR" />
+
+		<result column="fund_account_manage_amount" property="fundAccountManageAmount"
+			javaType="String" jdbcType="VARCHAR" />
+
+		<result column="fund_account_manage_property" property="fundAccountManageProperty"
+			javaType="String" jdbcType="VARCHAR" />
+
+		<result column="fund_account_manage_state" property="fundAccountManageState"
+			javaType="String" jdbcType="VARCHAR" />
+
+		<result column="fund_account_manage_create_time" property="fundAccountManageCreateTime"
+			javaType="String" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="getFund" resultMap="FundMap">
+		SELECT * FROM
+		fund_account_manage
+		WHERE 1=1
+		<if test="fundAccountId != null and fundAccountId != '' ">
+			AND fund_account_id = #{fundAccountId}
+		</if>
+		<if test="custId != null and custId != '' ">
+			AND cust_id = #{custId}
+		</if>
+		<if test="subaccountType != null and subaccountType != '' ">
+			AND subaccount_type = #{subaccountType}
+		</if>
+		<if
+			test="fundAccountManageProperty != null and fundAccountManageProperty != '' ">
+			AND fund_account_manage_property =
+			#{fundAccountManageProperty}
+		</if>
+		<if test="fundAccountManageState != null and fundAccountManageState != '' ">
+			AND fund_account_manage_state = #{fundAccountManageState}
+		</if>
+		<if
+			test="startTime != null and startTime != '' and endTime != null and endTime != '' ">
+			AND fund_account_manage_create_time BETWEEN #{startTime}
+			AND
+			#{endTime}
+		</if>
+		ORDER BY fund_account_manage_create_time DESC
+	</select>
+</mapper>
+
+
+

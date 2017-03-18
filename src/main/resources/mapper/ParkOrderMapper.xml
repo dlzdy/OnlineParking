@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yinzitech.onlineparking.dao.order.OrderMapperDao">
+	<resultMap type="com.yinzitech.onlineparking.entity.order.ParkingOrder"
+		id="ParkingOrderMap">
+		<id column="parking_order_id" property="parkingOrderId" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="parking_order_car_no" property="parkingOrderCarNo"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="parking_order_car_manage_id" property="parkingOrderCarManageId"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="parking_order_client_user_id" property="parkingOrderClientUserId"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="parking_order_car_enter_time" property="parkingOrderCarEnterTime"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="parking_order_car_exit_time" property="parkingOrderCarExitTime"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="parking_order_car_stay_time" property="parkingOrderCarStayTime"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="parking_order_parking_state" property="parkingOrderParkingState"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="parking_order_pay_state" property="parkingOrderPayState"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="parking_order_cost" property="parkingOrderCost"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="parking_order_hand_set_id" property="parkingOrderHandSetId"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="parking_order_handset_manager_id" property="parkingOrderHandsetManagerId"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="parking_order_parking_info_id" property="parkingOrderParkingInfoId"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="parking_order_car_number_state" property="parkingOrderCarNumberState"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="parking_order_create_time" property="parkingOrderCreateTime"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="parking_order_pay_cash" property="parkingOrderPayCash"
+			javaType="String" jdbcType="VARCHAR" />
+
+		<result column="parking_order_type" property="parkingOrderType"
+			javaType="String" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="sql_count">
+		select count(*) c from parking_order
+	</sql>
+	<sql id="sql_select">
+		select * from parking_order
+	</sql>
+	<!-- 全部订单查询 -->
+	<select id="getParkingOrder" resultMap="ParkingOrderMap">
+		<include refid="sql_select" />
+	</select>
+
+	<!-- 用户全部订单 -->
+	<select id="getParkingOrderByUserId" resultMap="ParkingOrderMap">
+		<include refid="sql_select" />
+		<where>
+			<if
+				test="parkingOrderClientUserId != null and parkingOrderClientUserId != '' ">
+				parking_order_client_user_id =
+				#{parkingOrderClientUserId}
+			</if>
+			<if test="parkingOrderPayState != null and parkingOrderPayState != '' ">
+				AND parking_order_pay_state = #{parkingOrderPayState}
+			</if>
+			<if
+				test="startTime != null and endTime != null and startTime != ''  and endTime != '' ">
+				AND parking_order_create_time BETWEEN #{startTime} and
+				#{endTime}
+			</if>
+			ORDER BY parking_order_create_time DESC
+		</where>
+	</select>
+
+	<!-- 手持机全部订单 -->
+	<select id="getParkingOrderByHandsetManagerId" resultMap="ParkingOrderMap">
+		<include refid="sql_select" />
+		<where>
+			<if
+				test="parkingOrderHandsetManagerId != null and parkingOrderHandsetManagerId != '' ">
+				parking_order_handset_manager_id =
+				#{parkingOrderHandsetManagerId}
+			</if>
+			<if test="parkingOrderPayState != null and parkingOrderPayState != '' ">
+				AND parking_order_pay_state = #{parkingOrderPayState}
+			</if>
+			<if
+				test="startTime != null and endTime != null and startTime != ''  and endTime != '' ">
+				AND parking_order_create_time BETWEEN #{startTime} and
+				#{endTime}
+			</if>
+			ORDER BY parking_order_create_time DESC
+		</where>
+	</select>
+	<!-- 停车场全部订单 -->
+	<select id="getParkingOrderByParkingInfoId" resultMap="ParkingOrderMap">
+		<include refid="sql_select" />
+		<where>
+			<if
+				test="parkingOrderParkingInfoId != null and parkingOrderParkingInfoId != '' ">
+				parking_order_parking_info_id =
+				#{parkingOrderParkingInfoId}
+			</if>
+			<if test="parkingOrderPayState != null and parkingOrderPayState != '' ">
+				AND parking_order_pay_state = #{parkingOrderPayState}
+			</if>
+			<if
+				test="startTime != null and endTime != null and startTime != ''  and endTime != '' ">
+				AND parking_order_create_time BETWEEN #{startTime} and
+				#{endTime}
+			</if>
+			ORDER BY parking_order_create_time DESC
+		</where>
+	</select>
+
+	<!-- 订单号查询订单 -->
+	<select id="getParkingOrderById" resultMap="ParkingOrderMap">
+		<include refid="sql_select" />
+		<where>
+			<if test="parkingOrderId != null and parkingOrderId != '' ">
+				parking_order_id = #{parkingOrderId}
+			</if>
+			ORDER BY parking_order_create_time DESC
+		</where>
+	</select>
+
+	<!-- 用户未支付订单 -->
+	<select id="getParkingOrderByPayState" resultMap="ParkingOrderMap">
+		<include refid="sql_select" />
+		<where>
+			<if
+				test="parkingOrderClientUserId != null and parkingOrderClientUserId != '' ">
+				parking_order_pay_state = 'NoPaid' AND
+				parking_order_client_user_id =
+				#{parkingOrderClientUserId}
+			</if>
+			ORDER BY parking_order_create_time DESC
+		</where>
+	</select>
+
+	<!-- 查询用户支付状态 -->
+	<select id="querParkingOrderByPayState" resultType="int">
+		<include refid="sql_count" />
+		<where>
+			<if
+				test="parkingOrderClientUserId != null and parkingOrderClientUserId != ''">
+				parking_order_client_user_id =
+				#{parkingOrderClientUserId} AND
+				parking_order_pay_state =
+				'NoPaid'
+			</if>
+			ORDER BY parking_order_create_time DESC
+		</where>
+	</select>
+
+
+	<!-- 查询停车长停车数量 -->
+	<select id="getParkingState" resultType="int">
+		<include refid="sql_count" />
+		<where>
+			<if
+				test="parkingOrderParkingInfoId != null and parkingOrderParkingInfoId != ''">
+				parking_order_parking_info_id = #{parkingOrderParkingInfoId}
+				AND parking_order_parking_state =
+				'stay'
+			</if>
+			ORDER BY parking_order_create_time DESC
+		</where>
+	</select>
+
+	<!-- 通过车牌号查询订单 -->
+	<select id="getParkingOrderByCarNo" resultMap="ParkingOrderMap">
+		<include refid="sql_select" />
+		<where>
+			<if test="parkingOrderCarNo != null and parkingOrderCarNo != ''">
+				parking_order_car_no like #{parkingOrderCarNo}
+			</if>
+			<if
+				test="parkingOrderParkingInfoId != null and parkingOrderParkingInfoId != '' ">
+				and parking_order_parking_info_id =
+				#{parkingOrderParkingInfoId}
+			</if>
+			<if
+				test="parkingOrderParkingState != null and parkingOrderParkingState != '' ">
+				and parking_order_parking_state = #{parkingOrderParkingState}
+			</if>
+			order by parking_order_create_time desc
+		</where>
+	</select>
+
+	<select id="queryParkOrder" resultMap="ParkingOrderMap">
+		<include refid="sql_select" />
+		WHERE 1=1
+		<if test="parkingOrderId != null and parkingOrderId != '' ">
+			AND parking_order_id = #{parkingOrderId}
+		</if>
+		<if test="parkingOrderCarNo != null and parkingOrderCarNo != '' ">
+			AND parking_order_car_no like #{parkingOrderCarNo}
+		</if>
+		<if
+			test="parkingOrderCarManageId != null and parkingOrderCarManageId != '' ">
+			AND parking_order_car_manage_id=
+			#{parkingOrderCarManageId}
+		</if>
+		<if
+			test="parkingOrderClientUserId != null and parkingOrderClientUserId != '' ">
+			AND parking_order_client_user_id=
+			#{parkingOrderClientUserId}
+		</if>
+		<if
+			test="parkingOrderParkingState != null and parkingOrderParkingState != '' ">
+			AND parking_order_parking_state=
+			#{parkingOrderParkingState}
+		</if>
+		<if test="parkingOrderPayState != null and parkingOrderPayState != '' ">
+			AND parking_order_pay_state= #{parkingOrderPayState}
+		</if>
+		<if test="parkingOrderHandSetId != null and parkingOrderHandSetId != '' ">
+			AND parking_order_hand_set_id= #{parkingOrderHandSetId}
+		</if>
+		<if
+			test="parkingOrderHandsetManagerId != null and parkingOrderHandsetManagerId != '' ">
+			AND parking_order_handset_manager_id=
+			#{parkingOrderHandsetManagerId}
+		</if>
+		<if
+			test="parkingOrderParkingInfoId != null and parkingOrderParkingInfoId != '' ">
+			AND parking_order_parking_info_id= #{parkingOrderParkingInfoId}
+		</if>
+		<if
+			test="parkingOrderCarNumberState != null and parkingOrderCarNumberState != '' ">
+			AND parking_order_car_number_state=
+			#{parkingOrderCarNumberState}
+		</if>
+		<if
+			test="startTime != null and startTime != '' and endTime != null and endTime != ''">
+			AND parking_order_create_time BETWEEN #{startTime} AND
+			#{endTime}
+		</if>
+		<if test="parkingOrderPayCash != null and parkingOrderPayCash != '' ">
+			AND parking_order_pay_cash = #{parkingOrderPayCash}
+		</if>
+		
+		<if test="parkingOrderType != null and parkingOrderType != '' ">
+			AND parking_order_type = #{parkingOrderType}
+		</if>
+		ORDER BY parking_order_create_time DESC
+	</select>
+
+
+</mapper>
+
+
+

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.yinzitech.onlineparking.dao.handsetSys.QuertHandsetOrderDao">
+	<resultMap type="com.yinzitech.onlineparking.entity.order.HandsetOrder"
+		id="HandSetMap">
+
+		<id column="order_id" property="orderId" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="parking_info_id" property="parkingInfoId"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="manager_id" property="managerId" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="phone" property="phone" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="manager_name" property="managerName" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="sum_cost" property="sumCost" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="order_nomber" property="orderNomber" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="endTime" property="endTime" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="startTime" property="startTime" javaType="String"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="getHandSetOrder" resultMap="HandSetMap">
+		SELECT * FROM handset_order
+		WHERE 1=1
+		<if test="parkingInfoId != null and parkingInfoId != '' ">
+			AND parking_info_id = #{parkingInfoId}
+		</if>
+
+		<if test="phone != null and phone != '' ">
+			AND phone = #{phone}
+		</if>
+
+		<if test="managerId != null and managerId != ''">
+			AND manager_id = #{managerId}
+		</if>
+
+		<if test="managerName != null and  managerName != ''">
+			AND manager_name LIKE #{managerName}
+		</if>
+
+		<if
+			test="startTime != null and startTime != '' and endTime != null and endTime != '' ">
+			AND startTime BETWEEN #{startTime} AND #{endTime}
+		</if>
+		ORDER BY startTime DESC
+	</select>
+</mapper>
+
+
+

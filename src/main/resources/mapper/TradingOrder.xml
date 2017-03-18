@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yinzitech.onlineparking.dao.order.QueryTradingOrderDao">
+	<resultMap type="com.yinzitech.onlineparking.entity.order.TradingOrders"
+		id="TradingOrderMap">
+		<id column="trading_order_id" property="tradingOrderId" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="trading_order_src_cust_id" property="tradingOrderSrcCustId"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="trading_order_pay_cust_fund_account_id"
+			property="tradingOrderPayCustFundAccountId" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="trading_order_parking_order_id" property="tradingOrderParkingOrderId"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="trading_order_payee_cust_id" property="tradingOrderPayeeCustId"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="trading_order_payee_cust_fund_account_id"
+			property="tradingOrderPayeeCustFundAccountId" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="trading_order_state" property="tradingOrderState"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="trading_order_pay_state" property="tradingOrderpayState"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="trading_order_balance_State" property="tradingOrderBalanceState"
+			javaType="String" jdbcType="VARCHAR" />
+
+		<result column="trading_order_tran_amount" property="tradingOrderTranAmount"
+			javaType="String" jdbcType="VARCHAR" />
+
+		<result column="trading_order_create_time" property="tradingOrderCreateTime"
+			javaType="String" jdbcType="VARCHAR" />
+	</resultMap>
+  
+	<select id="queryChargingOrder" resultMap="TradingOrderMap">
+		SELECT * FROM trading_orders WHERE 1=1
+		<if test="tradingOrderSrcCustId != null and tradingOrderSrcCustId != '' ">
+			AND trading_order_payee_cust_id = #{tradingOrderSrcCustId}
+		</if>
+		<if
+			test="tradingOrderParkingOrderId != null and tradingOrderParkingOrderId != '' ">
+			AND trading_order_parking_order_id =
+			#{tradingOrderParkingOrderId}
+		</if>
+		<if
+			test="tradingOrderPayeeCustId != null and tradingOrderPayeeCustId != '' ">
+			AND trading_order_payee_cust_id = #{tradingOrderPayeeCustId}
+		</if>
+		<if test="tradingOrderState != null and tradingOrderState != '' ">
+			AND trading_order_state= #{tradingOrderState}
+		</if>
+		<if test="tradingOrderpayState != null and tradingOrderpayState != '' ">
+			AND trading_order_pay_state= #{tradingOrderpayState}
+		</if>
+		<if
+			test="tradingOrderBalanceState != null and tradingOrderBalanceState != '' ">
+			AND trading_order_balance_State= #{tradingOrderBalanceState}
+		</if>
+		<if
+			test="startTime != null and startTime != '' and endTime !=null and endTime != '' ">
+			AND trading_order_create_time BETWEEN #{startTime} AND
+			#{endTime}
+		</if>
+		ORDER BY trading_order_create_time DESC
+	</select>
+</mapper>
+
+
+

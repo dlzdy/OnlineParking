@@ -1,0 +1,46 @@
+<div class="userCenter-userInfo-list" ng-controller="systemSetCtr">
+    <!--Begin 主体内容 -->
+    <ul class="normalList mt60">
+        <!--Begin 离线地图下载-->
+        <li ng-click="getMap()">
+            <img src="css/images/userCenter/icon-oulinemap.png" alt="">
+            离线地图下载
+            <i class="icon icon-arrow icon-arrow-right"></i>
+        </li>
+        <!--End 离线地图下载-->
+
+        <!--Begin 自动支付-->
+        <li ng-click="autoPay()">
+            <img src="css/images/userCenter/icon-autoPay.png" alt="">
+            自动支付
+            <i class="icon icon-arrow icon-arrow-right"></i>
+        </li>
+        <!--End 自动支付-->
+
+        <!--Begin 意见反馈-->
+        <li ng-click="feedBack()">
+            <img src="css/images/userCenter/icon-feedback.png" alt="">
+            意见反馈
+            <i class="icon icon-arrow icon-arrow-right"></i>
+        </li>
+        <!--End 意见反馈-->
+
+        <!--Begin 关于我们-->
+        <li ng-click="aboutUs()">
+            <img src="css/images/userCenter/icon-aboutus.png" alt="">
+            关于我们
+            <i class="icon icon-arrow icon-arrow-right"></i>
+        </li>
+        <!--End 关于我们-->
+    </ul>   
+
+    <!--Begin 按钮-->
+    <div class="bills-date-box text-center ">
+        <button class="btn btn-danger btn-fluid" ng-click="quit()">
+            <i class="icon icon-off"></i>
+            退出登录
+        </button>
+    </div>
+    <!--End 按钮-->
+
+</div>

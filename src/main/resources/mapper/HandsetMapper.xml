@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yinzitech.onlineparking.dao.handsetSys.QueryHandSetDao">
+	<resultMap
+		type="com.yinzitech.onlineparking.entity.handsetSys.HandsetManager"
+		id="HandSetMap">
+		<id column="handset_id" property="handsetId" javaType="String"
+			jdbcType="VARCHAR" />
+		<result column="handset_manager_id" property="handsetManagerId"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="handset_manager_security" property="handsetManagerSecurity"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="handset_manager_phone" property="handsetManagerPhone"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="parking_info_id" property="parkingInfoId"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="handset_manager_create_time" property="handsetManagerCreateTime"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="handset_manager_active_mark" property="handsetManagerActiveMark"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="handset_registr_ation_id" property="handsetRegistrAtionId"
+			javaType="String" jdbcType="VARCHAR" />
+		<result column="handset_manager_name" property="handsetManagerName"
+			javaType="String" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="getHandSet" resultMap="HandSetMap">
+	SELECT * FROM handset_manager WHERE 1=1
+		<if test="handsetId != null and handsetId != '' ">
+
+			AND handset_id = #{handsetId}
+		</if>
+		<if test="handsetManagerId != null and handsetManagerId != '' ">
+
+			AND handset_manager_id = #{handsetManagerId}
+		</if>
+		<if test="handsetManagerPhone != null and handsetManagerPhone != '' ">
+
+			AND handset_manager_phone like #{handsetManagerPhone}
+		</if>
+		<if test="parkingInfoId != null and parkingInfoId != '' ">
+
+			AND parking_info_id = #{parkingInfoId}
+		</if>
+		<if
+			test="handsetManagerActiveMark != null and handsetManagerActiveMark != '' ">
+
+			AND handset_manager_active_mark = #{handsetManagerActiveMark}
+		</if>
+		<if test="handsetManagerName != null and handsetManagerName != '' ">
+
+			AND handset_manager_name LIKE #{handsetManagerName}
+		</if>
+		<if
+			test="startTime != null and startTime != '' and endTime != null and endTime != '' ">
+
+			AND handset_manager_create_time BETWEEN #{startTime} AND
+			#{endTime}
+		</if>
+		ORDER BY handset_manager_create_time DESC
+	</select>
+</mapper>
+
+
+
