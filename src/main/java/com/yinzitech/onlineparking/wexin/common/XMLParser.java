@@ -35,7 +35,7 @@ public class XMLParser {
 		while (i < allNodes.getLength()) {
 			node = allNodes.item(i);
 			if (node instanceof Element) {
-				map.put(node.getNodeName(), node.getTextContent());
+//				map.put(node.getNodeName(), node.getTextContent());
 			}
 			i++;
 		}

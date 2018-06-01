@@ -9,20 +9,28 @@
 
 package com.yinzitech.onlineparking.utils;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.List;
+import java.util.Properties;
+
 import org.apache.ibatis.executor.parameter.ParameterHandler;
 import org.apache.ibatis.executor.resultset.ResultSetHandler;
 import org.apache.ibatis.executor.statement.StatementHandler;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
-import org.apache.ibatis.plugin.*;
+import org.apache.ibatis.plugin.Interceptor;
+import org.apache.ibatis.plugin.Intercepts;
+import org.apache.ibatis.plugin.Invocation;
+import org.apache.ibatis.plugin.Plugin;
+import org.apache.ibatis.plugin.Signature;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.SystemMetaObject;
 import org.apache.ibatis.scripting.defaults.DefaultParameterHandler;
-import org.apache.log4j.Logger;
-
-import java.sql.*;
-import java.util.List;
-import java.util.Properties;
+import org.slf4j.Logger;
 
 /**
  * Mybatis - 通用分页拦截器
@@ -31,7 +39,7 @@ import java.util.Properties;
 @Intercepts({ @Signature(type = StatementHandler.class, method = "prepare", args = { Connection.class }),
 		@Signature(type = ResultSetHandler.class, method = "handleResultSets", args = { Statement.class }) })
 public class PageHelper implements Interceptor {
-	private static final Logger logger = Logger.getLogger(PageHelper.class);
+//	private static final Logger logger = Logger.getLogger(PageHelper.class);
 
 	public static final ThreadLocal<Page> localPage = new ThreadLocal<Page>();
 
@@ -167,17 +175,17 @@ public class PageHelper implements Interceptor {
 			int totalPage = totalCount / page.getPageSize() + ((totalCount % page.getPageSize() == 0) ? 0 : 1);
 			page.setPages(totalPage);
 		} catch (SQLException e) {
-			logger.error("Ignore this exception", e);
+//			logger.error("Ignore this exception", e);
 		} finally {
 			try {
 				rs.close();
 			} catch (SQLException e) {
-				logger.error("Ignore this exception", e);
+//				logger.error("Ignore this exception", e);
 			}
 			try {
 				countStmt.close();
 			} catch (SQLException e) {
-				logger.error("Ignore this exception", e);
+//				logger.error("Ignore this exception", e);
 			}
 		}
 	}

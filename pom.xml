@@ -28,18 +28,15 @@
 		<dbcp.version>2.1.1</dbcp.version>
 		<!-- bonecp 版本号 -->
 		<bonecp.version>0.8.0.RELEASE</bonecp.version>
+		
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
 
 	</properties>
 	<!--************ 配置文件栏******end ****************** -->
 	<dependencies>
 		<!-- ************************spring核心包************************ -->
-
-		<dependency>
-			<groupId>com.cloopen</groupId>
-			<artifactId>CCP_REST_SDK_JAVA</artifactId>
-			<version>2.7r</version>
-		</dependency>
-
 
 		<!-- springframe start -->
 		<dependency>

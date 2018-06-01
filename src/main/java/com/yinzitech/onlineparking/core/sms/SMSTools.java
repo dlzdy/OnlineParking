@@ -11,7 +11,7 @@ package com.yinzitech.onlineparking.core.sms;
 
 import java.util.HashMap; 
 
-import com.cloopen.rest.sdk.CCPRestSDK; 
+//import com.cloopen.rest.sdk.CCPRestSDK; 
 
 //import com.cloopen.rest.sdk.CCPRestSDK;
 
@@ -36,25 +36,25 @@ public class SMSTools {
 	public static final String SMSTMP = "41386";
 
 	public static int sendMSM(String phoneNu, String codeNu) {
-		HashMap<String, Object> result = null;
-
-		CCPRestSDK restAPI = new CCPRestSDK();
-		restAPI.init(sandboxappPath, sandboxappPort);//
-		// 初始化服务器地址和端口，格式如下，服务器地址不需要写https://
-		restAPI.setAccount(accountSid, accountToken);// 初始化主帐号和主帐号TOKEN
-		restAPI.setAppId(AppId);// 初始化应用ID
-		result = restAPI.sendTemplateSMS(phoneNu, SMSTMP, new String[] { codeNu, LIMITTIME });
-
-		System.out.println("SDKTestSendTemplateSMS result=" + result);
-		if ("000000".equals(result.get("statusCode"))) {
-			return 1;
-			// return ResultResponse.obj2JsonResult("1", "用户发起对手机号为" + phoneNu +
-			// "的手机发对验证码验证,成功", "");
-		} else {
-			return 0;
-			// return ResultResponse.obj2JsonResult("0", "用户发起对手机号为" + phoneNu +
-			// "的手机发对验证码验证,失败,请重新申请", "");
-		}
+//		HashMap<String, Object> result = null;
+//
+//		CCPRestSDK restAPI = new CCPRestSDK();
+//		restAPI.init(sandboxappPath, sandboxappPort);//
+//		// 初始化服务器地址和端口，格式如下，服务器地址不需要写https://
+//		restAPI.setAccount(accountSid, accountToken);// 初始化主帐号和主帐号TOKEN
+//		restAPI.setAppId(AppId);// 初始化应用ID
+//		result = restAPI.sendTemplateSMS(phoneNu, SMSTMP, new String[] { codeNu, LIMITTIME });
+//
+//		System.out.println("SDKTestSendTemplateSMS result=" + result);
+//		if ("000000".equals(result.get("statusCode"))) {
+//			return 1;
+//			// return ResultResponse.obj2JsonResult("1", "用户发起对手机号为" + phoneNu +
+//			// "的手机发对验证码验证,成功", "");
+//		} else {
+//			return 0;
+//			// return ResultResponse.obj2JsonResult("0", "用户发起对手机号为" + phoneNu +
+//			// "的手机发对验证码验证,失败,请重新申请", "");
+//		}
+		return 0;
 	}
-
 }

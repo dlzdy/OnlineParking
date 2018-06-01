@@ -37,8 +37,8 @@
 	<div class="container-fluid" id="main-container">
 		<a href="#" id="menu-toggler"><span></span></a>
 		<!-- menu toggler -->
-		<input type="hidden" id="userID" value="<%=session.getAttribute("loginname") %>" <!-- 登录时的用户名 即为电话号码 -->
-		<input type="hidden" id="uID" value="<%=session.getAttribute("uID") %>" <!-- 后台通过电话号码将 用户id取出 -->
+		<input type="hidden" id="userID" value="<%=session.getAttribute("loginname") %>"> <!-- 登录时的用户名 即为电话号码 -->
+		<input type="hidden" id="uID" value="<%=session.getAttribute("uID") %>"> <!-- 后台通过电话号码将 用户id取出 -->
 		<!-- 左侧菜单 -->
 		<%@ include file="left.jsp"%>
 

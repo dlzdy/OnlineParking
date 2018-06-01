@@ -21,8 +21,8 @@
 <div style="min-width:800px;">
  <div id="tab_menu" style="height:30px;display:none"></div> 
 <div style="width:100%;">
-			<input type="hidden" id="userID" value="<%=session.getAttribute("loginname") %>" <!-- 登录时的用户名 即为电话号码 -->
-		<input type="hidden" id="uID" value="<%=session.getAttribute("uID") %>" <!-- 后台通过电话号码将 用户id取出 -->
+			<input type="hidden" id="userID" value="<%=session.getAttribute("loginname") %>"> <!-- 登录时的用户名 即为电话号码 -->
+		<input type="hidden" id="uID" value="<%=session.getAttribute("uID") %>"> <!-- 后台通过电话号码将 用户id取出 -->
 	<div id="page" style="width:100%;height:100%;"></div>
 </div>		
 </div>
